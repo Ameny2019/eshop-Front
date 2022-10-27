@@ -1,0 +1,88 @@
+<app-topbar1></app-topbar1>
+
+
+<div class="container-fluid mb-5"   style="background-color: #1E1B58;">
+  <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 200px">
+      <h1 class="font-weight-semi-bold text-uppercase mb-3"  style="color: #fdc600;">Votre facture</h1>
+
+  </div>
+</div>
+
+<div class="container mt-5  " *ngIf="cart">
+
+  <header class="d-flex flex-row-reverse justify-content-between pb-5" >
+
+    <!-- <h1 style="background-color :#FDC600; height: 80px ;padding-top: 35px; margin-bottom: 50px">Facture</h1> -->
+    <div class="col-lg-4 col-md-12 mb-5 pr-3 pr-xl-5">
+      <a href="" class="text-decoration-none">
+          <h4 class="mb-5 display-5">e-Shop by la Poste Tunisienne</h4>
+      </a>
+      <p class="mb-2"><i class="fa fa-map-marker-alt text-warning mr-3"></i>Centre de la Philatélie : Complexe postal de l’Ariana, 2 Avenue Habib Bourguiba 2080 Ariana - Tunisie</p>
+      <p class="mb-2"><i class="fa fa-envelope text-warning mr-3"></i>philatelie@poste.tn</p>
+      <p class="mb-0"><i class="fa fa-phone-alt text-warning mr-3"></i>Tél : (+216) 71 719 579 - 71 713 936</p>
+  </div>
+
+    <span><img alt="logoofficielpostetn" src="assets/img/postetn.png" style="width: 130px; margin: 10px;"></span>
+ <div>
+    <p> Nom du client : {{authService.getCoonectedUser().nom}}</p>
+    <p>Email : {{authService.getCoonectedUser().email}} </p>
+    
+
+    <address>
+      <p>Adresse de livraison : {{authService.getCoonectedUser().adresse}} </p>
+    </address>
+  </div>
+  </header>
+  <article>
+    <h1>Recipient</h1>
+
+    <table class="meta mt-5">
+      <tr>
+        <th><span>Facture N°</span></th>
+        <td><span>{{cart._id}}</span></td>
+      </tr>
+      <tr>
+        <th><span>Date</span></th>
+        <td><span>{{cart.createdAt | date:'short'}}</span></td>
+      </tr>
+      <tr>
+        <!-- <th><span>Amount Due</span></th>
+        <td><span id="prefix"> DT </span><span>{{cart.subTotal}}</span></td> -->
+      </tr>
+    </table>
+    <table class="inventory">
+      <thead>
+        <tr>
+          <th><span>N°</span></th>
+          <th><span>Description</span></th>
+          <th><span>Qté</span></th>
+          <th><span>Prix unitaire</span></th>
+          <th><span>Sous-total</span></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of cart.items; let i=index">
+          <td><span>{{i+1}}.</span></td>
+          <td><span>{{item.product_name}}</span></td>
+          <td><span data-prefix>{{item.quantity}}</span></td>
+          <td><span>{{item.price}}</span></td>
+          <td><span data-prefix></span><span>{{item.total/1000 }}</span> DT </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+    <table class="balance">
+      <tr>
+        <th><span>Total</span></th>
+        <td><span data-prefix></span><span>{{cart.subTotal}}</span> DT </td>
+      </tr>
+    </table>
+  </article>
+  <aside>
+    <span>La poste tunisienne vous remercie pour votre confiance</span>
+    
+  </aside>
+</div>
+<hr>
+<app-footer></app-footer>
