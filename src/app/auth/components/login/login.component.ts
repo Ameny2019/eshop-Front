@@ -30,8 +30,8 @@ export class LoginComponent implements OnInit {
       this.urlParam = +params.get('param');
     });
     this.formLogin = this.formBuilder.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required],
+      email: ['', Validators.required, Validators.email],
+      password: ['', Validators.required, Validators.minLength(8)],
     });
   }
 

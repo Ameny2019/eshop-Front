@@ -19,6 +19,7 @@
     "@angular/platform-browser-dynamic": "~13.3.0",
     "@angular/router": "~13.3.0",
     "@ng-select/ng-select": "^8.2.0",
+    "@rxweb/reactive-form-validators": "^2.1.7",
     "@types/stripe-v3": "^3.1.27",
     "click-edit": "^1.0.1",
     "ng-sweet-alert-2": "^0.0.4",
