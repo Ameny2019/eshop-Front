@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'inscription', component: InscriptionComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'reset-password/:token', component: ResetPasswordComponent },
+  { path: 'account-activation/:code', component: LoginComponent },
 ];
 
 @NgModule({

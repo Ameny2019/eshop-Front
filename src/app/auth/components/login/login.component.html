@@ -14,9 +14,17 @@
             <span class="input-group-addon"><i class="fa fa-envelope fa mr-2 " aria-hidden="false"></i></span>
             <div class="inputinsc">
               <input type="text" class="form-control" formControlName="email" name="email" id="email"
-                placeholder="Votre e-mail ici" required />
-              <div class="valid-feedback">Valide</div>
-              <div class="invalid-feedback">Champs requis</div>
+                placeholder="Votre e-mail ici"/>
+                <div *ngIf="
+                formLogin.get('email').hasError('required') &&
+                formLogin.get('email').touched
+                  " style="color: red ;">
+                  *Ce champs est obligatoire!
+                </div>
+                <div *ngIf="
+                formLogin.get('email').hasError('email') &&
+                formLogin.get('email').touched
+              " style="color: red ;">*Ce champs doit être une adresse e-mail valide!</div>
             </div>
           </div>
         </div>
@@ -26,18 +34,28 @@
             <span class="input-group-addon"><i class="fa fa-lock fa-lg mr-2" aria-hidden="true"></i></span>
             <div class="inputinsc">
               <input type="password" class="form-control" name="password" formControlName="password" id="password"
-                placeholder="Votre mot de passe ici (min 8 carac.)" required />
-              <div class="valid-feedback">Valide</div>
-              <div class="invalid-feedback">Champs requis</div>
+                placeholder="Votre mot de passe ici (min 8 carac.)" />
+                <div class="champsob" *ngIf="
+                formLogin.get('password').hasError('required') &&
+                formLogin.get('password').touched
+                  " style="color: red">
+                  *Ce champs est obligatoire!
+                </div>
+                <div class="champsob" *ngIf="
+                formLogin.get('password').hasError('minlength') &&
+                formLogin.get('password').touched
+              " style="color: red">
+                  *Ce champs doit être au moins de 8 caractères!
+                </div>
             </div>
           </div>
         </div>
         <!-- button de validation-->
         <div class="form-group" id="btn-modif">
-          <button type="submit" class="btn mr-3">
+          <button type="submit" class="btn mr-3" [disabled]="formLogin.invalid">
             Se connecter
           </button>
-          <button type="button" routerLink="" class="btn">
+          <button type="button" routerLink="/" class="btn">
             Annuler
           </button>
         </div>

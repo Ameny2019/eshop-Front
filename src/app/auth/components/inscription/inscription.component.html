@@ -9,36 +9,36 @@
     <div id="forminscri" class="cols-sm-10" style="color: #1e1b58 ;">
       <form [formGroup]="registeForm" (ngSubmit)="register()" class="needs-validation" novalidate>
         <div class="form-group">
-          <label for="nom" class="cols-sm-2 control-label" aria-placeholder="Votre nom ici">
+          <label for="nom" class="cols-sm-2 control-label" aria-placeholder="Votre nom et prénom ici">
             Nom & prénom
           </label>
           <div class=" d-flex align-items-baseline cols-sm-10">
             <span class="input-group-addon "><i class="fa fa-user fa mr-2" aria-hidden="true"></i></span>
             <div class="inputinsc">
               <input type="text" class="form-control " name="nom" formControlName="nom" id="nom"
-                placeholder="votre nom ici * " />
+                placeholder="votre nom et prénom ici * " />
               <span *ngIf="!registeForm.get('nom').valid && registeForm.get('nom').touched" style="color: red"> *Ce
                 champs est obligatoire! </span>
             </div>
           </div>
 
           <div class="form-group">
-            <label for="email" class="cols-sm-2 control-label">Email</label>
-            <div class="  d-flex align-items-baseline cols-sm-10">
-
+            <label for="email" class="cols-sm-2 control-label">E-mail</label>
+            <div class="d-flex align-items-baseline cols-sm-10">
               <span class="input-group-addon"><i class="fa fa-envelope fa mr-2 " aria-hidden="false"></i></span>
               <div class="inputinsc">
-
                 <input type="text" class="form-control" formControlName="email" name="email" id="email"
-                  placeholder="votre email ici" required />
-                <span *ngIf="
-                    !registeForm.get('email').valid &&
+                  placeholder="votre e-mail ici" />
+                <div *ngIf="
+                    registeForm.get('email').hasError('required') &&
                     registeForm.get('email').touched
                   " style="color: red ;">
                   *Ce champs est obligatoire!
-                </span>
-                <div class="valid-feedback">valide</div>
-                <div class="invalid-feedback">champs requis</div>
+                </div>
+                <div *ngIf="
+                registeForm.get('email').hasError('email') &&
+                registeForm.get('email').touched
+              " style="color: red ;">*Ce champs doit être une adresse e-mail valide!</div>
               </div>
             </div>
           </div>
@@ -47,21 +47,22 @@
             <label for="password" class="cols-sm-2 control-label">
               Mot de passe</label>
             <div class=" d-flex align-items-baseline cols-sm-10">
-
               <span class="input-group-addon"><i class="fa fa-lock fa-lg mr-2" aria-hidden="true"></i></span>
               <div class="inputinsc">
-
                 <input type="password" class="form-control" name="password" formControlName="password" id="password"
-                  placeholder="Votre mot de passe ici (min 8 carac.)" required />
-                <span class="champsob" *ngIf="
-                    !registeForm.get('password').valid &&
+                  placeholder="Votre mot de passe ici (min 8 carac.)" />
+                <div class="champsob" *ngIf="
+                    registeForm.get('password').hasError('required') &&
                     registeForm.get('password').touched
                   " style="color: red">
                   *Ce champs est obligatoire!
-                </span>
-
-                <div class="valid-feedback">valide</div>
-                <div class="invalid-feedback">champs requis</div>
+                </div>
+                <div class="champsob" *ngIf="
+                registeForm.get('password').hasError('minlength') &&
+                registeForm.get('password').touched
+              " style="color: red">
+                  *Ce champs doit être au moins de 8 caractères!
+                </div>
               </div>
             </div>
           </div>
@@ -70,23 +71,31 @@
             <label for="confirm" class="cols-sm-6 control-label">Confirmer
             </label>
             <div class="d-flex align-items-baseline  cols-sm-10">
-
               <span class="input-group-addon"><i class="fa fa-lock fa-lg mr-2" aria-hidden="true"></i></span>
               <div class="inputinsc">
-
                 <input type="password" class="form-control" formControlName="passwordconfirm" name="passwordconfirm"
-                  id="confirm" placeholder="Confirmer votre mot de passe" required />
-                <span *ngIf="
-                    !registeForm.get('passwordconfirm').valid &&
+                  id="confirm" placeholder="Confirmer votre mot de passe" />
+                <div *ngIf="
+                    registeForm.get('passwordconfirm').valid &&
                     registeForm.get('passwordconfirm').touched
                   " style="color: red">
                   *Ce champs est obligatoire!
-                </span>
+                </div>
+                <div class="champsob" *ngIf="
+                registeForm.get('passwordconfirm').hasError('minlength') &&
+                registeForm.get('passwordconfirm').touched
+              " style="color: red">
+                  *Ce champs doit être au moins de 8 caractères!
+                </div>
+                <div style="color: red"
+                  *ngIf="registeForm.get('passwordconfirm').touched &&
+                  registeForm.get('passwordconfirm').hasError('compare')">
+                  *Les deux mot de passe ne sont pas identiques!</div>
               </div>
             </div>
           </div>
           <div class="form-check">
-            <input class=" form-check-input" type="checkbox" id="check1" name="option1" value="something" nochecked />
+            <input class="form-check-input" type="checkbox" id="check1" name="option1" value="something" nochecked />
             <label class="form-check-label">
               J'ai lu et j'accepte
               <a style="color:#ffffff;text-decoration: underline;" href="/ConditionsVente">les conditions générales de

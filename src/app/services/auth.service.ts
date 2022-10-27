@@ -1,25 +1,33 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {Router} from "@angular/router";
+import { Router } from "@angular/router";
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private http:HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
-  login(user:any){
-    return this.http.post(`http://localhost:3000/auth/login`,user)
-  }
-  register(user:any){
-    return this.http.post(`http://localhost:3000/user/CreateUser`,user)
+  register(user: any) {
+    return this.http.post(`${environment.baseURL}/auth/register`, user)
   }
 
-  setConnected(token: string, user: any, state: string) {
-    localStorage.setItem("token",token);
-    localStorage.setItem('state', state);
-    localStorage.setItem('user', JSON.stringify(user));
+  accountConfirmation(code: any) {
+    return this.http.get(`${environment.baseURL}/auth/account-activation/${code}`)
+  }
+
+  login(user: any) {
+    return this.http.post(`${environment.baseURL}/auth/login`, user)
+  }
+
+  logout() {
+    return this.http.get(`${environment.baseURL}/auth/logout`)
+  }
+
+  setToken(token: string) {
+    localStorage.setItem("token", token);
   }
 
   isConnected() {
@@ -31,10 +39,15 @@ export class AuthService {
   }
 
   logoutUser() {
-    localStorage.clear();
-    this.router.navigate(['/']);
+    this.logout().subscribe(
+      (response: any) => {
+        localStorage.clear();
+        this.router.navigate(['/']);
+      },
+      (error: any) => {
+      });
   }
 
-  
+
 
 }
