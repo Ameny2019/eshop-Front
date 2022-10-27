@@ -14,8 +14,6 @@ import {MessageService} from 'primeng/api';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  // LoginUserData={}
-
   formLogin: FormGroup;
   errorLogin = false;
   urlParam: number;

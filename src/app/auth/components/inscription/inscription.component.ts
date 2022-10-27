@@ -1,6 +1,6 @@
 import { Component, OnInit, NgModule } from '@angular/core';
 import {FormBuilder, FormGroup, Validators, FormControl} from "@angular/forms";
-import {AuthService} from "../services/auth.service";
+import {AuthService} from "../../../services/auth.service";
 import {Router} from "@angular/router";
 @Component({
   selector: 'app-inscription',
@@ -23,9 +23,9 @@ export class InscriptionComponent implements OnInit {
         role: ['Client']
       })
     }
-  
-    
-  
+
+
+
     register(){
       if (this.registeForm.value.password !== this.registeForm.value.passwordconfirm) {
         alert('merci de confimer votre mot de passe');
@@ -39,9 +39,9 @@ export class InscriptionComponent implements OnInit {
           alert('error');
         }
       )
-  
-  
-  
+
+
+
     }
-  
+
   }

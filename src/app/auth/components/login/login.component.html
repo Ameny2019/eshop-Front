@@ -1,0 +1,50 @@
+<app-topbar1></app-topbar1>
+
+<div id="bodyall">
+  <div id="div1">
+    <span class="badge badge-pill badge-warning mt-5"> Connectez-vous ici ! </span>
+    <h3 style="margin: 50px 0; color: #1e1b58 ;" class="mb-4 display-5 font-weight-semi-bold"> Accéder à votre compte
+      E-shop </h3>
+    <div id="forminscri" class="cols-sm-10" style="color: #1e1b58 ;">
+      <form [formGroup]="formLogin" (ngSubmit)="login()">
+        <div class="alert alert-danger" *ngIf="errorLogin">E-mail ou mot de passe incorrecte !!</div>
+        <div class="form-group">
+          <label for="email" class="cols-sm-2 control-label">E-mail</label>
+          <div class="  d-flex align-items-baseline cols-sm-10">
+            <span class="input-group-addon"><i class="fa fa-envelope fa mr-2 " aria-hidden="false"></i></span>
+            <div class="inputinsc">
+              <input type="text" class="form-control" formControlName="email" name="email" id="email"
+                placeholder="Votre e-mail ici" required />
+              <div class="valid-feedback">Valide</div>
+              <div class="invalid-feedback">Champs requis</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="password" class="cols-sm-2 control-label">Mot de passe</label>
+          <div class=" d-flex align-items-baseline cols-sm-10">
+            <span class="input-group-addon"><i class="fa fa-lock fa-lg mr-2" aria-hidden="true"></i></span>
+            <div class="inputinsc">
+              <input type="password" class="form-control" name="password" formControlName="password" id="password"
+                placeholder="Votre mot de passe ici (min 8 carac.)" required />
+              <div class="valid-feedback">Valide</div>
+              <div class="invalid-feedback">Champs requis</div>
+            </div>
+          </div>
+        </div>
+        <!-- button de validation-->
+        <div class="form-group" id="btn-modif">
+          <button type="submit" class="btn mr-3">
+            Se connecter
+          </button>
+          <button type="button" routerLink="" class="btn">
+            Annuler
+          </button>
+        </div>
+        <a style="color:#1e1b58" routerLink="/auth/inscription">Créer un compte</a>
+        <a style="color:#1e1b58" routerLink="/auth/forgot-password">J'ai oubier mon mot de passe?</a>
+        <!-- button de validation-->
+      </form>
+    </div>
+  </div>
+</div>
