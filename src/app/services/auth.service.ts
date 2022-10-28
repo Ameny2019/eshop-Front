@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import jwt_decode from "jwt-decode";
+import { EditprofileService } from './editprofile.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +16,11 @@ export class AuthService {
   usernameSubject = new BehaviorSubject<string>('');
   avatarSubject = new BehaviorSubject<string>('');
 
-  constructor(private http: HttpClient, private router: Router) {
-    this.loadDataFromToken();
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private editprofileService: EditprofileService) {
+    this.loadDataFromCurrentProfile();
   }
 
   register(user: any) {
@@ -56,6 +60,15 @@ export class AuthService {
       this.usernameSubject.next(decoded?.username);
       this.avatarSubject.next(decoded?.avatar);
     }
+  }
+
+  loadDataFromCurrentProfile(){
+    this.editprofileService
+    .getProfile()
+    .subscribe((response: any) => {
+      this.usernameSubject.next(response?.data?.nom);
+      this.avatarSubject.next(response?.data?.avatar);
+    });
   }
 
   private isConnected(): boolean {

@@ -25,7 +25,7 @@
               </span>
             </a>
             <a routerLink="/profile" style="text-decoration:none">
-              <p class="connected-user"> Bonjour ,{{authService.usernameSubject | async}}!</p>
+              <p class="connected-user">Bonjour, {{authService.usernameSubject | async}}!</p>
             </a>
             <button (click)="authService.logoutUser()" class="nav-item nav-link btn btn-link logout-btn">
               Se déconnecter
