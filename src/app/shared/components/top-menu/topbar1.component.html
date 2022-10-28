@@ -1,39 +1,39 @@
-<div class=" bg-secondary" >
-    <div style="display: flex;
-    align-items: center;
-    justify-content: space-between;">
-        <div class="">
-            <a routerLink="/" >
-              <img src="assets/img/postetn.png" alt="" style="width: 130px; margin: 40px;">
-            </a>
+<div class="constainer-fluid bg-secondary">
+  <div class="row">
+    <div class="col-sm-5 col-lg-4">
+      <a routerLink="/" class="d-flex flex-row logo-card">
+        <img src="assets/img/postetn.png" class="logo" alt="">
+        <div class="d-none d-lg-block pt-4">
+          <h1 class="m-0 display-5 font-weight-semi-bold logo-text">E-SHOP
+            <h3 class="logo-text">by la Poste Tunisienne</h3>
+          </h1>
         </div>
-        <div class="col-lg-3 d-none d-lg-block"  style="margin-left: -200px;">
-            <a href="" class="text-decoration-none">
-                <h1 class="m-0 display-5 font-weight-semi-bold" style="color:#1E1B58">E-SHOP<h3 style="color:#1E1B58">by la Poste Tunisienne </h3>
-                </h1>
-            </a>
-        </div>
-        <div class="col-lg-3 col-6 text-right">
-            <!-- <a href="" class="btn border">
-                <i class="fas fa-heart text-warning"></i>
-            </a> -->
-           <a routerLink="/cartDetail" class="btn border" style="margin-right:-200px; background-color:#1E1B58 ;">
-             <i class="fas fa-shopping-cart text-warning">
-                <div class="position-absolute top-0 start-0 translate-middle badge rounded-circle" style="background-color:#FDC600;color:#1E1B58 ;">{{cartService.tempCartItems.length}}</div></i>
-            </a>
-        </div>
-        <div>
-            <div class="navbar-nav" *ngIf="!(authService.isLoggedIn() | async); else connected">
-                <a routerLink="/auth/inscription" class="nav-item nav-link" style="margin-right:10px;  font-weight: 500">S'inscrire</a>
-                <a routerLink="/auth/login" class="nav-item nav-link" style="margin:0 30px  ; font-weight: 500; color: #1b1c1b;" >Se connecter</a>
-            </div>
-            <ng-template #connected >
-                <div class="navbar-nav" style="display:flex; flex-direction:column" >
-                    <a routerLink="/profile" ><span class="input-group-addon" ><i style="font-size:35px ;color:#1E1B58;margin-bottom: 10px;" class="fa fa-user-circle mr-2" aria-hidden="true"></i></span></a>
-                    <a routerLink="/profile" style="text-decoration:none"><p style="margin-bottom:-5px ; font-weight: 500; color: #1E1B58;"> Bonjour ,{{authService.usernameSubject | async}} !   </p></a>
-                    <a (click)="authService.logoutUser()" class="nav-item nav-link" style="margin:0 30px  ; font-weight: 500;">Se déconnecter</a>
-                </div>
-            </ng-template>
-        </div>
+      </a>
     </div>
+    <div class="col-sm-7 col-lg-8 d-flex flex-row-reverse align-items-center">
+      <div class="d-flex">
+        <div class="navbar-nav" *ngIf="!(authService.isLoggedIn() | async); else connected">
+          <a routerLink="/auth/inscription" class="nav-item nav-link login-link">S'inscrire</a>
+          <a routerLink="/auth/login" class="nav-item nav-link register-link">Se connecter</a>
+          <app-shopping-cart></app-shopping-cart>
+        </div>
+        <ng-template #connected>
+          <div class="navbar-nav justify-content-end" style="display:flex; flex-direction:column">
+            <a routerLink="/profile">
+              <span class="input-group-addon">
+                <i class="fa fa-user-circle mr-2 user-icon" aria-hidden="true"></i>
+              </span>
+            </a>
+            <a routerLink="/profile" style="text-decoration:none">
+              <p class="connected-user"> Bonjour ,{{authService.usernameSubject | async}}!</p>
+            </a>
+            <button (click)="authService.logoutUser()" class="nav-item nav-link btn btn-link logout-btn">
+              Se déconnecter
+            </button>
+          <app-shopping-cart></app-shopping-cart>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
 </div>

@@ -22,19 +22,19 @@ export class CategoriesComponent implements OnInit {
 
   getEstamps(){
     console.log("here estamps");
-    
+
     this.productService.getproduct().subscribe(
       (res:any) => {
         this.products=res.data;
         console.log("before estamps is : ",this.products);
-        
+
         this.products = this.products.filter(item=> {
-          console.log("item is ",item.producType);  
+          console.log("item is ",item.producType);
           if(this.n<8 && item.producType == "estamp"){
             this.n++;
-            return true;            
+            return true;
         } else {return false}
-          
+
         })
         console.log("after estamps is : ",this.products);
       }

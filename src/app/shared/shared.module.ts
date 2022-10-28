@@ -6,6 +6,10 @@ import { NotFoundErrorComponent } from './components/Page400/not-found-error.com
 import { FooterComponent } from './components/footer/footer.component';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { ServiceErrorComponent } from './components/Page500/service-error.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { RouterModule } from '@angular/router';
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+// import { CategoriesComponent } from '../components/home/categories/categories.component';
 
 @NgModule({
   declarations: [
@@ -13,12 +17,16 @@ import { ServiceErrorComponent } from './components/Page500/service-error.compon
     NotFoundErrorComponent,
     ServiceErrorComponent,
     FooterComponent,
+    SidebarComponent,
+    ShoppingCartComponent,
+    // CategoriesComponent,
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     RxReactiveFormsModule,
     FormsModule,
+    RouterModule
   ],
   exports: [
     ReactiveFormsModule,
@@ -28,6 +36,7 @@ import { ServiceErrorComponent } from './components/Page500/service-error.compon
     NotFoundErrorComponent,
     ServiceErrorComponent,
     FooterComponent,
+    SidebarComponent,
   ]
 })
 export class SharedModule { }

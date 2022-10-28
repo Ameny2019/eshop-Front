@@ -1,37 +1,22 @@
-
 import { ProgAnnuelComponent } from './components/prog-annuel/prog-annuel.component';
-import { HomeComponent } from './components/home/home/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AllproductComponent } from './components/products/allproduct/allproduct.component';
-import { DetailComponent } from './components/products/detail/detail.component'
+import { AllproductComponent } from './components/products/allproduct.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { AboutComponent } from './components/about/about.component';
 import { QrComponent } from './components/qr/qr.component';
 import { AuthGuard } from './gaurds/auth.guard';
 import { LoginGuard } from './gaurds/login.guard';
-import { LayoutComponent } from './components/layout/layout.component';
-import { CartDetailComponent } from './components/cart-detail/cart-detail.component';
 import { ServiceErrorComponent } from './shared/components/Page500/service-error.component';
 import { HistphilComponent } from './components/histphil/histphil.component';
-import { CategoriesComponent } from './components/home/categories/categories.component'
 import { CheckoutComponent } from "./components/checkout/checkout.component";
 import { InvoiceComponent } from "./components/invoice/invoice.component";
 import { CondventeComponent } from "./components/condvente/condvente.component";
 import { NotFoundErrorComponent } from './shared/components/Page400/not-found-error.component';
+import { CategoriesComponent } from './components/categories/categories.component';
 
 const routes: Routes = [
   // { path: '/', redirectTo: 'error404' },
-
-  {
-    path: '',
-    component: HomeComponent,
-    children: [
-      { path: '', component: LayoutComponent },
-      { path: 'detail', component: DetailComponent },
-      { path: 'cartDetail', component: CartDetailComponent },
-    ],
-  },
   { path: 'product', component: AllproductComponent },
   { path: 'programme', component: ProgAnnuelComponent },
   { path: 'qr', component: QrComponent },
