@@ -32,7 +32,8 @@ export class InscriptionComponent implements OnInit {
         this.messageService.add({severity:'success', summary:'Bienvenue!', detail: res?.message});
         this.router.navigateByUrl('/auth/login');
       }, (err:any) => {
-        this.messageService.add({severity:'error', summary:'Problème!', detail: err?.error.message});
+        console.log(err);
+        this.messageService.add({severity:'error', summary:'Problème!', detail: err?.error?.message});
       }
     );
   }

@@ -13,7 +13,7 @@ export class ResponseInterceptor implements HttpInterceptor {
 
   constructor(private router: Router,
     private messageService: MessageService,
-    private authService: AuthService,
+    // private authService: AuthService,
   ) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -29,7 +29,7 @@ export class ResponseInterceptor implements HttpInterceptor {
             detail: 'Votre session a été expiré. Merci de refaire le login pour accéder à votre espace.'
           });
           // Save user decoennection
-          this.authService.isLoginSubject.next(false);
+          // this.authService.isLoginSubject.next(false);
           // redirect to the login route
           this.router.navigate(['/auth/login']);
         }

@@ -28,7 +28,7 @@ const routes: Routes = [
   { path: 'histphil', component: HistphilComponent },
   { path: 'conditions-vente', component: CondventeComponent },
   { path: '', loadChildren: () => import('./public/public.module').then(m => m.PublicModule) },
-  { path: 'auth', canActivate: [LoginGuard], loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
+  { path: 'auth', /*canActivate: [LoginGuard],*/ loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
   { path: 'profile', canActivate: [AuthGuard], loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule) },
   { path: '500', component: ServiceErrorComponent },
   { path: '404', component: NotFoundErrorComponent },

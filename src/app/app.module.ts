@@ -55,11 +55,11 @@ import { CategoriesComponent } from './pages/categories/categories.component';
     useClass: TokenInterceptor,
     multi: true
   },
-  {
-    provide: HTTP_INTERCEPTORS,
-    useClass: ResponseInterceptor,
-    multi: true
-  },
+  // {
+  //   provide: HTTP_INTERCEPTORS,
+  //   useClass: ResponseInterceptor,
+  //   multi: true
+  // },
     MessageService,
     EditprofileService,],
   bootstrap: [AppComponent],
