@@ -4,25 +4,25 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { Topbar2Component } from './public/parts/topbar2/topbar2.component';
-import { AllproductComponent } from './components/products/allproduct.component';
-import { ContactComponent } from './components/contact/contact.component';
-import { AboutComponent } from './components/about/about.component';
-import { ProgAnnuelComponent } from './components/prog-annuel/prog-annuel.component';
-import { QrComponent } from './components/qr/qr.component';
+import { AllproductComponent } from './pages/products/allproduct.component';
+import { ContactComponent } from './pages/contact/contact.component';
+import { AboutComponent } from './pages/about/about.component';
+import { ProgAnnuelComponent } from './pages/prog-annuel/prog-annuel.component';
+import { QrComponent } from './pages/qr/qr.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { HistphilComponent } from './components/histphil/histphil.component';
-import { CheckoutComponent } from './components/checkout/checkout.component';
-import { InvoiceComponent } from './components/invoice/invoice.component';
-import { CondventeComponent } from './components/condvente/condvente.component';
+import { HistphilComponent } from './pages/histphil/histphil.component';
+import { CheckoutComponent } from './pages/checkout/checkout.component';
+import { InvoiceComponent } from './pages/invoice/invoice.component';
+import { CondventeComponent } from './pages/condvente/condvente.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { EditprofileService } from './services/editprofile.service';
 import { ResponseInterceptor } from './interceptors/response-interceptor.interceptor';
 import { TokenInterceptor } from './interceptors/token-interceptor.interceptor';
 import { SharedModule } from './shared/shared.module';
-import { CategoriesComponent } from './components/categories/categories.component';
+import { CategoriesComponent } from './pages/categories/categories.component';
 
 
 @NgModule({

@@ -1,19 +1,19 @@
-import { ProgAnnuelComponent } from './components/prog-annuel/prog-annuel.component';
+import { ProgAnnuelComponent } from './pages/prog-annuel/prog-annuel.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AllproductComponent } from './components/products/allproduct.component';
-import { ContactComponent } from './components/contact/contact.component';
-import { AboutComponent } from './components/about/about.component';
-import { QrComponent } from './components/qr/qr.component';
+import { AllproductComponent } from './pages/products/allproduct.component';
+import { ContactComponent } from './pages/contact/contact.component';
+import { AboutComponent } from './pages/about/about.component';
+import { QrComponent } from './pages/qr/qr.component';
 import { AuthGuard } from './gaurds/auth.guard';
 import { LoginGuard } from './gaurds/login.guard';
 import { ServiceErrorComponent } from './shared/components/Page500/service-error.component';
-import { HistphilComponent } from './components/histphil/histphil.component';
-import { CheckoutComponent } from "./components/checkout/checkout.component";
-import { InvoiceComponent } from "./components/invoice/invoice.component";
-import { CondventeComponent } from "./components/condvente/condvente.component";
+import { HistphilComponent } from './pages/histphil/histphil.component';
+import { CheckoutComponent } from "./pages/checkout/checkout.component";
+import { InvoiceComponent } from "./pages/invoice/invoice.component";
+import { CondventeComponent } from "./pages/condvente/condvente.component";
 import { NotFoundErrorComponent } from './shared/components/Page400/not-found-error.component';
-import { CategoriesComponent } from './components/categories/categories.component';
+import { CategoriesComponent } from './pages/categories/categories.component';
 
 const routes: Routes = [
   // { path: '/', redirectTo: 'error404' },
