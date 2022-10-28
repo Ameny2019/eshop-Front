@@ -81,16 +81,20 @@ export class AuthService {
   }
 
   logoutUser() {
-    localStorage.clear();
-    this.router.navigate(['/']);
-    this.isLoginSubject.next(false);
     this.logout().subscribe(
       (response: any) => {
+        this.clearUserData();
       },
       (error: any) => {
+        this.clearUserData();
       });
   }
 
+  clearUserData(){
+    localStorage.clear();
+    this.router.navigate(['/']);
+    this.isLoginSubject.next(false);
+  }
 
   isLoggedIn(): Observable<boolean> {
     return this.isLoginSubject.asObservable();
