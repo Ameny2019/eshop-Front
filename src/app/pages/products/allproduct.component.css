@@ -1,0 +1,30 @@
+.top-container {
+  background-color: #1e1b58;
+}
+
+.all-products-box {
+  min-height: 200px;
+}
+
+.all-products-text {
+  color: #fdc600;
+}
+
+.search-input {
+  border-radius: 10px 0 0 10px;
+}
+
+.search-btn {
+  background-color: #fdc600;
+  border-radius: 0 10px 10px 0;
+}
+
+.product-img {
+  height: 450px;
+  padding: 50px;
+}
+
+.price {
+  font-size: 20px;
+  color: #fd0000;
+}
