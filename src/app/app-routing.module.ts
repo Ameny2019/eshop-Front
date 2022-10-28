@@ -17,7 +17,7 @@ import { CategoriesComponent } from './pages/categories/categories.component';
 
 const routes: Routes = [
   // { path: '/', redirectTo: 'error404' },
-  { path: 'product', component: AllproductComponent },
+  { path: 'products', component: AllproductComponent },
   { path: 'programme', component: ProgAnnuelComponent },
   { path: 'qr', component: QrComponent },
   { path: 'contact', component: ContactComponent },
