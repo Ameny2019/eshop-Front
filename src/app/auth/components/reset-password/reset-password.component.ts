@@ -22,28 +22,31 @@ export class ResetPasswordComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.resetPasswordForm = this.formBuilder.group({
+      token: [''],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+      passwordconfirm: ['', [Validators.required, Validators.minLength(8), RxwebValidators.compare({ fieldName: 'password' })]],
+    });
     this.route.paramMap.subscribe(params => {
       this.token = params.get('token');
-    });
-    this.resetPasswordForm = this.formBuilder.group({
-      password: ['', Validators.required, Validators.minLength(8)],
-      passwordconfirm: ['', Validators.required, Validators.minLength(8), RxwebValidators.compare({fieldName:'password' })],
+      this.resetPasswordForm.patchValue({token: this.token});
     });
   }
 
-  resetPassword(){
+  resetPassword() {
     this.submitted = true;
     if (this.resetPasswordForm.invalid) {
       return
     };
-    // this.authservice.resetPassword(this.resetPasswordForm.value).subscribe((response: any) => {
-    //   this.toasterService.pop('success', 'Félicitations', response.message);
-    //   this.router.navigate(['/login']);
-    // },
-    //   (error: any) => {
-    //     this.toasterService.pop('error', 'Erreur', error.error.message);
-    //   }
-    // );
+    this.authService.resetPassword(this.resetPasswordForm.value).subscribe((res: any) => {
+      this.messageService.add({ severity: 'success', summary: 'Félicitations', detail: res?.message });
+      this.router.navigate(['/auth/login']);
+    },
+      (err: any) => {
+        this.tokenAlreadyUsedError = true;
+        this.messageService.add({ severity: 'error', summary: 'Problème!', detail: err?.error?.message });
+      }
+    );
   }
 
 }

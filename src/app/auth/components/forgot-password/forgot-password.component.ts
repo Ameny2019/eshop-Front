@@ -28,13 +28,13 @@ export class ForgotPasswordComponent implements OnInit {
     if (this.forgotPasswordForm.invalid) {
         return;
     }
-    // this.authservice.forgotPassword(this.forgotPasswordForm.value).subscribe((response:any) => {
-    //   this.toasterService.pop('success', 'Vérifier votre courrier', response.message);
-    // },
-    // (error: any) => {
-    //   this.toasterService.pop('error', 'Erreur', error.error.message);
-    // });
-
+    this.authService.forgotPassword(this.forgotPasswordForm.value).subscribe((res:any) => {
+      this.messageService.add({ severity: 'success', summary: 'Vérifier votre courrier', detail: res?.message });
+    },
+    (err: any) => {
+     this.accountNotFound = true;
+      this.messageService.add({ severity: 'error', summary: 'Problème!', detail: err?.error?.message });
+    });
   }
 
 }

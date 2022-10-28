@@ -26,6 +26,14 @@ export class AuthService {
     return this.http.get(`${environment.baseURL}/auth/logout`)
   }
 
+  forgotPassword(playload: any) {
+    return this.http.post(`${environment.baseURL}/auth/forgot-password`, playload);
+  }
+
+  resetPassword(playload: any) {
+    return this.http.post(`${environment.baseURL}/auth/reset-password`, playload);
+  }
+  
   setToken(token: string) {
     localStorage.setItem("token", token);
   }
@@ -39,10 +47,10 @@ export class AuthService {
   }
 
   logoutUser() {
+    localStorage.clear();
+    this.router.navigate(['/']);
     this.logout().subscribe(
       (response: any) => {
-        localStorage.clear();
-        this.router.navigate(['/']);
       },
       (error: any) => {
       });
