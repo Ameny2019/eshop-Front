@@ -9,7 +9,6 @@ import { ServiceErrorComponent } from './components/Page500/service-error.compon
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { RouterModule } from '@angular/router';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
-// import { CategoriesComponent } from '../components/home/categories/categories.component';
 
 @NgModule({
   declarations: [

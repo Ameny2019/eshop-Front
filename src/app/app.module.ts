@@ -22,7 +22,6 @@ import { EditprofileService } from './services/editprofile.service';
 import { ResponseInterceptor } from './interceptors/response-interceptor.interceptor';
 import { TokenInterceptor } from './interceptors/token-interceptor.interceptor';
 import { SharedModule } from './shared/shared.module';
-import { CategoriesComponent } from './pages/categories/categories.component';
 
 
 @NgModule({
@@ -38,7 +37,6 @@ import { CategoriesComponent } from './pages/categories/categories.component';
     CheckoutComponent,
     InvoiceComponent,
     CondventeComponent,
-    CategoriesComponent
   ],
   imports: [
     BrowserModule,

@@ -13,14 +13,12 @@ import { CheckoutComponent } from "./pages/checkout/checkout.component";
 import { InvoiceComponent } from "./pages/invoice/invoice.component";
 import { CondventeComponent } from "./pages/condvente/condvente.component";
 import { NotFoundErrorComponent } from './shared/components/Page400/not-found-error.component';
-import { CategoriesComponent } from './pages/categories/categories.component';
 
 const routes: Routes = [
   // { path: '/', redirectTo: 'error404' },
   { path: 'products', component: AllproductComponent },
-  { path: 'categories', component: CategoriesComponent },
-  { path: 'checkout', component: CheckoutComponent },
-  { path: 'invoice/:id_cart', component: InvoiceComponent },
+  { path: 'checkout', canActivate: [AuthGuard], component: CheckoutComponent },
+  { path: 'invoice/:id_cart', canActivate: [AuthGuard], component: InvoiceComponent },
   { path: 'programme', component: ProgAnnuelComponent },
   { path: 'qr', component: QrComponent },
   { path: 'contact', component: ContactComponent },
