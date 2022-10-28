@@ -4,6 +4,7 @@ import { ProfileRoutingModule } from './profile-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { ProfileComponent } from './components/profile/profile.component';
 import { EditProfileComponent } from './components/editprofile/editprofile.component';
+import { InternationalPhoneNumberModule } from 'ng-phone-number';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { EditProfileComponent } from './components/editprofile/editprofile.compo
   imports: [
     CommonModule,
     ProfileRoutingModule,
-    SharedModule
+    SharedModule,
+    InternationalPhoneNumberModule,
   ]
 })
 export class ProfileModule { }
