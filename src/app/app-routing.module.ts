@@ -12,14 +12,12 @@ import { AuthGuard } from './gaurds/auth.guard';
 import { LoginGuard } from './gaurds/login.guard';
 import { LayoutComponent } from './components/layout/layout.component';
 import { CartDetailComponent } from './components/cart-detail/cart-detail.component';
-import { ProfileComponent } from './profile/profile.component';
 import {ServiceErrorComponent} from './service-error/service-error.component';
 import { HistphilComponent } from './components/histphil/histphil.component';
 import {CategoriesComponent} from './components/home/categories/categories.component'
 import {CheckoutComponent} from "./components/checkout/checkout.component";
 import {InvoiceComponent} from "./components/invoice/invoice.component";
 import {CondventeComponent} from "./components/condvente/condvente.component";
-import {EditprofileComponent} from "./components/editprofile/editprofile.component"
 
 const routes: Routes = [
   // { path: '/', redirectTo: 'error404' },
@@ -39,7 +37,6 @@ const routes: Routes = [
   { path: 'product', component: AllproductComponent },
   { path: 'programme', component: ProgAnnuelComponent },
   { path: 'qr', component: QrComponent },
-  { path: 'profile', component: ProfileComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'about', component: AboutComponent },
   // { path: 'error404', component: NotFoundErrorComponent },
@@ -49,9 +46,9 @@ const routes: Routes = [
   {path:'checkout', component : CheckoutComponent},
   {path:'invoice/:id_cart',component:InvoiceComponent},
   {path:'ConditionsVente',component:CondventeComponent},
-  {path:'editprofile/:id', component:EditprofileComponent},
   { path: '', loadChildren: () => import('./public/public.module').then(m => m.PublicModule) },
   { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
+  { path: 'profile', loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule) },
   // { path: '**', component: NotFoundErrorComponent },
 ];
 @NgModule({

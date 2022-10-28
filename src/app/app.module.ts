@@ -20,7 +20,6 @@ import { EfleureComponent } from './components/home/efleure/efleure.component';
 
 import { LayoutComponent } from './components/layout/layout.component';
 import { CartDetailComponent } from './components/cart-detail/cart-detail.component';
-import { ProfileComponent } from './profile/profile.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import {MessageService} from 'primeng/api';
 import {ToastModule} from 'primeng/toast';
@@ -31,7 +30,6 @@ import { HistphilComponent } from './components/histphil/histphil.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { InvoiceComponent } from './components/invoice/invoice.component';
 import { CondventeComponent } from './components/condvente/condvente.component';
-import { EditprofileComponent } from './components/editprofile/editprofile.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { EditprofileService } from './services/editprofile.service';
 import { ResponseInterceptor } from './interceptors/response-interceptor.interceptor';
@@ -60,14 +58,12 @@ import { SharedModule } from './shared/shared.module';
 
     LayoutComponent,
     CartDetailComponent,
-    ProfileComponent,
     BannerComponent,
     ServiceErrorComponent,
     HistphilComponent,
     CheckoutComponent,
     InvoiceComponent,
     CondventeComponent,
-    EditprofileComponent,
 
 
   ],

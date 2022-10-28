@@ -6,27 +6,14 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class EditprofileService {
+  constructor(private http: HttpClient) { }
 
-
-  loggedIn = false;
-  editLog: string[] = [];
-
-  constructor(private http:HttpClient) { }
-
-  save(path: string, value: string) {
-    this.editLog.push(`save: ${path}, ${value}`);
+  getProfile() {
+    return this.http.get(`${environment.baseURL}/auth/profile/`);
   }
 
-  GetUserById(id:any) {
-    return this.http.get(`${environment.baseURL}/user/GetUserById/${id}`);
+  editProfile(data: any) {
+    return this.http.put(`${environment.baseURL}/auth/profile/`, data)
   }
-
-
-  editProfile(id:any,data:any){
-  return this.http.put(`${environment.baseURL}/user/UpdateUser/${id}`,data)
-}
-
-
-
 
 }
