@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
     this.errorLogin = false;
     this.authService.login(this.formLogin.value).subscribe((res: any) => {
       this.authService.setToken(res.token);
-      this.router.navigate(['/cartDetail']);
+      this.router.navigate(['/cart-details']);
       this.messageService.add({ severity: 'success', summary: 'Vous êtes connecté !', detail: res?.message });
     }, (err: any) => {
       this.errorLogin = true;
