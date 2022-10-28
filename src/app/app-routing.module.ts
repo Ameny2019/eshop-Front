@@ -12,12 +12,13 @@ import { AuthGuard } from './gaurds/auth.guard';
 import { LoginGuard } from './gaurds/login.guard';
 import { LayoutComponent } from './components/layout/layout.component';
 import { CartDetailComponent } from './components/cart-detail/cart-detail.component';
-import { ServiceErrorComponent } from './service-error/service-error.component';
+import { ServiceErrorComponent } from './shared/components/Page500/service-error.component';
 import { HistphilComponent } from './components/histphil/histphil.component';
 import { CategoriesComponent } from './components/home/categories/categories.component'
 import { CheckoutComponent } from "./components/checkout/checkout.component";
 import { InvoiceComponent } from "./components/invoice/invoice.component";
 import { CondventeComponent } from "./components/condvente/condvente.component";
+import { NotFoundErrorComponent } from './shared/components/Page400/not-found-error.component';
 
 const routes: Routes = [
   // { path: '/', redirectTo: 'error404' },
@@ -29,9 +30,6 @@ const routes: Routes = [
       { path: '', component: LayoutComponent },
       { path: 'detail', component: DetailComponent },
       { path: 'cartDetail', component: CartDetailComponent },
-
-
-
     ],
   },
   { path: 'product', component: AllproductComponent },
@@ -39,8 +37,6 @@ const routes: Routes = [
   { path: 'qr', component: QrComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'about', component: AboutComponent },
-  // { path: 'error404', component: NotFoundErrorComponent },
-  { path: 'error500', component: ServiceErrorComponent },
   { path: 'histphil', component: HistphilComponent },
   { path: 'categorie', component: CategoriesComponent },
   { path: 'checkout', component: CheckoutComponent },
@@ -49,7 +45,9 @@ const routes: Routes = [
   { path: '', loadChildren: () => import('./public/public.module').then(m => m.PublicModule) },
   { path: 'auth', canActivate: [LoginGuard], loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
   { path: 'profile', canActivate: [AuthGuard], loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule) },
-  // { path: '**', component: NotFoundErrorComponent },
+  { path: '500', component: ServiceErrorComponent },
+  { path: '404', component: NotFoundErrorComponent },
+  { path: '**', component: NotFoundErrorComponent },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' })],

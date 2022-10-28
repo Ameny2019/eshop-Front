@@ -25,7 +25,7 @@ import {MessageService} from 'primeng/api';
 import {ToastModule} from 'primeng/toast';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { BannerComponent } from './components/home/banner/banner.component';
-import { ServiceErrorComponent } from './service-error/service-error.component';
+import { ServiceErrorComponent } from './shared/components/Page500/service-error.component';
 import { HistphilComponent } from './components/histphil/histphil.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { InvoiceComponent } from './components/invoice/invoice.component';
@@ -59,7 +59,6 @@ import { SharedModule } from './shared/shared.module';
     LayoutComponent,
     CartDetailComponent,
     BannerComponent,
-    ServiceErrorComponent,
     HistphilComponent,
     CheckoutComponent,
     InvoiceComponent,
