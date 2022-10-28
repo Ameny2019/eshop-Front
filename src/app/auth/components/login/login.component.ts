@@ -49,6 +49,8 @@ export class LoginComponent implements OnInit {
     this.errorLogin = false;
     this.authService.login(this.formLogin.value).subscribe((res: any) => {
       this.authService.setToken(res.token);
+      this.authService.setUsername(res.username);
+      this.authService.setAvatar(res.avatar);
       this.router.navigate(['/cartDetail']);
       this.messageService.add({ severity: 'success', summary: 'Vous êtes connecté !', detail: res?.message });
     }, (err: any) => {

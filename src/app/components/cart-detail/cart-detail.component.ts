@@ -36,11 +36,11 @@ export class CartDetailComponent implements OnInit {
   }
 
   cartStep2() {
-    if (this.authService.isConnected()) {
+    if (this.authService.isLoggedIn()) {
       this.router.navigate(['/checkout']);
 
     } else {
-      this.router.navigate(['/login/1']);
+      this.router.navigate(['/login']);
     }
   }
 
