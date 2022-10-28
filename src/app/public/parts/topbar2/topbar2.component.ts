@@ -1,8 +1,6 @@
-import { ProductService } from '../../../services/product.service';
 import { Component, OnInit } from '@angular/core';
-import {CartService} from "../../../services/cart.service";
-
-
+import { HomeService } from 'src/app/services/home.service';
+import { CartService } from "../../../services/cart.service";
 
 @Component({
   selector: 'app-topbar2',
@@ -18,13 +16,13 @@ export class Topbar2Component implements OnInit {
     { id: 3, name: 'Poste' },
     { id: 4, name: 'Tunisienne' },
   ];
-  constructor(private productServ: ProductService, public cartService: CartService) {}
+  constructor(private homeService: HomeService, public cartService: CartService) { }
 
   ngOnInit(): void {
     this.getAllProducts();
   }
   getAllProducts() {
-    this.productServ.getproduct().subscribe((data) => {
+    this.homeService.getProducts().subscribe((data) => {
       let result: any = data;
       console.log('Data', result.data);
       let productTempList = result.data.map((elm) => {
@@ -39,7 +37,7 @@ export class Topbar2Component implements OnInit {
       });
       console.log('Product list', productTempList);
       let list = productTempList.filter((elm) => elm !== null);
-      this.Prod= list ;
+      this.Prod = list;
     });
   }
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { EfleureService } from 'src/app/services/efleure.service';
-import { ProductService } from 'src/app/services/product.service';
+import { HomeService } from 'src/app/services/home.service';
 
 @Component({
   selector: 'app-efleure',
@@ -12,7 +11,7 @@ export class EfleureComponent implements OnInit {
 
   products:any;
   n:number=0;
-  constructor(private productService:ProductService,
+  constructor(private homeService:HomeService,
     private router:Router
     ) { }
 
@@ -22,19 +21,19 @@ export class EfleureComponent implements OnInit {
 
   getEfleurs(){
     console.log("here efleurs");
-    
-    this.productService.getproduct().subscribe(
+
+    this.homeService.getProducts().subscribe(
       (res:any) => {
         this.products=res.data;
         console.log("before efleurs is : ",this.products);
-        
+
         this.products = this.products.filter(item=> {
-          console.log("item is ",item.producType);  
+          console.log("item is ",item.producType);
           if(this.n<8 && item.producType == "efleur"){
             this.n++;
-            return true;            
+            return true;
         } else {return false}
-          
+
         })
         console.log("after efleurs is : ",this.products);
       }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { EstampsService } from 'src/app/services/estamps.service';
-import { ProductService } from 'src/app/services/product.service';
+import { HomeService } from 'src/app/services/home.service';
 
 @Component({
   selector: 'app-estamps',
@@ -12,7 +11,7 @@ export class CategoriesComponent implements OnInit {
 
   products:any;
   n:number=0;
-  constructor(private productService:ProductService,
+  constructor(private homeService:HomeService,
               private router:Router
     ) { }
 
@@ -22,19 +21,18 @@ export class CategoriesComponent implements OnInit {
 
   getEstamps(){
     console.log("here estamps");
-    
-    this.productService.getproduct().subscribe(
+    this.homeService.getProducts().subscribe(
       (res:any) => {
         this.products=res.data;
         console.log("before estamps is : ",this.products);
-        
+
         this.products = this.products.filter(item=> {
-          console.log("item is ",item.producType);  
+          console.log("item is ",item.producType);
           if(this.n<8 && item.producType == "estamp"){
             this.n++;
-            return true;            
+            return true;
         } else {return false}
-          
+
         })
         console.log("after estamps is : ",this.products);
       }
