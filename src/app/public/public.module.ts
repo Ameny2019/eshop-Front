@@ -11,7 +11,6 @@ import { FeaturedComponent } from './parts/featured/featured.component';
 import { SubscribeComponent } from './parts/subscribe/subscribe.component';
 import { EfleureComponent } from './parts/efleure/efleure.component';
 import { OfferComponent } from './parts/offer/offer.component';
-import { RouterModule } from '@angular/router';
 import { CategoriesComponent } from './parts/estamps/estamps.component';
 
 

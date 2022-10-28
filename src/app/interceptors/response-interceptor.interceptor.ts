@@ -6,12 +6,14 @@ import { Observable, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { catchError } from 'rxjs/operators';
+import { AuthService } from '../services/auth.service';
 
 @Injectable()
 export class ResponseInterceptor implements HttpInterceptor {
 
   constructor(private router: Router,
     private messageService: MessageService,
+    private authService: AuthService,
   ) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -26,6 +28,8 @@ export class ResponseInterceptor implements HttpInterceptor {
             summary: 'La session a été expiré.',
             detail: 'Votre session a été expiré. Merci de refaire le login pour accéder à votre espace.'
           });
+          // Save user decoennection
+          this.authService.isLoginSubject.next(false);
           // redirect to the login route
           this.router.navigate(['/auth/login']);
         }
