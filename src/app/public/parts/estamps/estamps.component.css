@@ -1,0 +1,17 @@
+.title-text {
+  margin-top: 50px;
+}
+
+.sub-title-text {
+  margin-bottom: 50px;
+}
+
+.product-img {
+  height: 450px;
+  padding: 50px;
+}
+
+.price {
+  font-size: 20px;
+  color: #fd0000;
+}

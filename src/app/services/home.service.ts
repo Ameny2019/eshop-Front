@@ -12,4 +12,7 @@ export class HomeService {
   getProducts() {
     return this.http.get(`${environment.baseURL}/home/products`);
   }
+  getProductDetails(id:any) {
+    return this.http.get(`${environment.baseURL}/home/products/${id}`);
+  }
 }

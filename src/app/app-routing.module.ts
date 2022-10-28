@@ -15,7 +15,7 @@ import { CondventeComponent } from "./pages/condvente/condvente.component";
 import { NotFoundErrorComponent } from './shared/components/Page400/not-found-error.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
+  // { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
   { path: 'products', component: AllproductComponent },
   { path: 'checkout', canActivate: [AuthGuard], component: CheckoutComponent },
   { path: 'invoice/:id_cart', canActivate: [AuthGuard], component: InvoiceComponent },

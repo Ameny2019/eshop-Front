@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
 import {MessageService} from "primeng/api";
+import { HomeService } from 'src/app/services/home.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-detail',
@@ -10,11 +12,21 @@ import {MessageService} from "primeng/api";
 })
 export class DetailComponent implements OnInit {
   n: number = 1;
-  product: any = JSON.parse(localStorage.getItem('productToDetail'));
+  product: any;
+  idProduct : any;
 
-  constructor(private cartService: CartService) {}
+  constructor(
+    private router: ActivatedRoute,
+    private homeService: HomeService,
+    private cartService: CartService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.idProduct = this.router.snapshot.params['id'];
+    this.homeService.getProductDetails(this.idProduct).subscribe(
+      (res: any) => {
+        this.product = res;
+      });
+  }
 
   plus() {
     if (this.n < this.product.estamp.QunatityEstampDisponible) this.n++;
