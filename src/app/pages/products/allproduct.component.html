@@ -9,9 +9,7 @@
     </h1>
   </div>
 </div>
-
-
-<!-- stamps -->
+<!-- search input -->
 <hr>
 <div class="col-6 col-6" style="margin: auto;">
   <form>
@@ -31,12 +29,13 @@
 </div>
 <hr>
 
+<!-- stamps -->
 <div class="row px-xl-5 pb-3">
   <div class="col-lg-3 col-md-6 col-sm-12 pb-1" *ngFor='let product of products  | filter: searchText'>
     <div *ngIf="product.producType == 'estamp'" class="card product-item border-0 mb-4">
       <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
         <img (click)="toDetail(product)" class="img-fluid w-100" src="http://localhost:3000/{{product?.estamp?.photo}}"
-          alt="" style="height: 480PX;padding: 50px;">
+          alt="Timbre de la poste" style="height: 480PX;padding: 50px;">
       </div>
       <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
         <h6 class="text-truncate mb-3">{{product?.estamp?.sujet}}</h6>
@@ -53,8 +52,6 @@
     </div>
   </div>
 </div>
-
-
 
 <!-- fleurs -->
 <div class="row px-xl-5 pb-3">
