@@ -15,7 +15,9 @@ export class AuthService {
   usernameSubject = new BehaviorSubject<string>('');
   avatarSubject = new BehaviorSubject<string>('');
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router) {
+    this.loadDataFromToken();
+  }
 
   register(user: any) {
     return this.http.post(`${environment.baseURL}/auth/register`, user)
@@ -44,14 +46,16 @@ export class AuthService {
   setToken(token: string) {
     localStorage.setItem("token", token);
     this.isLoginSubject.next(true);
+    this.loadDataFromToken();
   }
 
-  setUsername(name: string){
-    this.usernameSubject.next(name);
-  }
-
-  setAvatar(avatar: string){
-    this.avatarSubject.next(avatar);
+  loadDataFromToken(){
+    const token = localStorage.getItem('token');
+    if(token){
+      const decoded:any= jwt_decode(token);
+      this.usernameSubject.next(decoded?.username);
+      this.avatarSubject.next(decoded?.avatar);
+    }
   }
 
   private isConnected(): boolean {
