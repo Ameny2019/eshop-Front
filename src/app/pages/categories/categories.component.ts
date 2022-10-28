@@ -41,7 +41,7 @@ export class CategoriesComponent implements OnInit {
 
   toDetail(product: any) {
     localStorage.setItem('productToDetail', JSON.stringify(product));
-    this.router.navigateByUrl("/detail")
+    this.router.navigateByUrl("/details")
   }
 
 }

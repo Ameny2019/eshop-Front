@@ -25,7 +25,7 @@
 
 
 
-          
+
           <div class="col-md-6 form-group">
             <label>E-mail</label>
             <p>{{email}}</p>
@@ -317,7 +317,7 @@
           </div> -->
         </div>
       </div>
-      
+
     </div>
     <div class="col-lg-4">
       <div class="card border-secondary mb-5">
@@ -355,7 +355,7 @@
               <input type="radio" class="custom-control-input" name="payment3" id="paypal3" [(ngModel)]="modepay" value="choix13">
               <label class="custom-control-label" for="paypal3">Au bureau de poste</label>
             </div>
-          </div> 
+          </div>
 
           <div class="form-group">
             <div class="custom-control custom-radio">
@@ -363,7 +363,7 @@
               <label class="custom-control-label" for="paypal2">Par courrier express</label>
             </div>
           </div>
-          
+
           <div class="form-group">
             <div class="custom-control custom-radio">
               <input type="radio" class="custom-control-input" name="payment1" id="paypal1" [(ngModel)]="modepay" value="choix11">
@@ -371,7 +371,7 @@
             </div>
           </div>
         </div>
-       
+
       </div>
 
 
@@ -405,7 +405,7 @@
             <p *ngIf="modepay === 'choix3'; else t2">Passer au paiement</p>
             <ng-template #t2>Valider et continuer</ng-template>
           </button>
-          <p> Consulter les <a href="/ConditionsVente" style="text-decoration:underline">conditions générales de vente</a> pour plus d'informations sur les modes de livraison et de paiement. </p>
+          <p> Consulter les <a routerLink="/conditions-vente" style="text-decoration:underline">conditions générales de vente</a> pour plus d'informations sur les modes de livraison et de paiement. </p>
         </div>
       </div>
     </div>
