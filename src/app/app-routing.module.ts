@@ -6,7 +6,6 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { AboutComponent } from './pages/about/about.component';
 import { QrComponent } from './pages/qr/qr.component';
 import { AuthGuard } from './gaurds/auth.guard';
-import { LoginGuard } from './gaurds/login.guard';
 import { ServiceErrorComponent } from './shared/components/Page500/service-error.component';
 import { HistphilComponent } from './pages/histphil/histphil.component';
 import { CheckoutComponent } from "./pages/checkout/checkout.component";
@@ -26,7 +25,7 @@ const routes: Routes = [
   { path: 'histphil', component: HistphilComponent },
   { path: 'conditions-vente', component: CondventeComponent },
   { path: '', loadChildren: () => import('./public/public.module').then(m => m.PublicModule) },
-  { path: 'auth', /*canActivate: [LoginGuard],*/ loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
+  { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
   { path: 'profile', canActivate: [AuthGuard], loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule) },
   { path: '500', component: ServiceErrorComponent },
   { path: '404', component: NotFoundErrorComponent },
