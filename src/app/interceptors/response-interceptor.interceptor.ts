@@ -6,7 +6,6 @@ import { Observable, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { catchError } from 'rxjs/operators';
-import { AuthService } from '../services/auth.service';
 
 @Injectable()
 export class ResponseInterceptor implements HttpInterceptor {
