@@ -4,7 +4,7 @@ import { Router } from "@angular/router";
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import jwt_decode from "jwt-decode";
-import { EditprofileService } from './editprofile.service';
+import { EditProfileService } from './editprofile.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,7 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private editprofileService: EditprofileService) {
+    private editprofileService: EditProfileService) {
       if(this.isConnected()){
         this.loadDataFromCurrentProfile();
       }

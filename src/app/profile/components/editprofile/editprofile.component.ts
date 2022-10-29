@@ -2,7 +2,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
-import { EditprofileService } from 'src/app/services/editprofile.service';
+import { EditProfileService } from 'src/app/services/editprofile.service';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -20,7 +20,7 @@ export class EditProfileComponent implements OnInit {
   });
 
   constructor(
-    public editprofileService: EditprofileService,
+    public editprofileService: EditProfileService,
     public authService: AuthService,
     private messageService: MessageService,
     private router: Router,

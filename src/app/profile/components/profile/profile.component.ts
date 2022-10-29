@@ -2,7 +2,7 @@ import { Validators } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { EditprofileService } from 'src/app/services/editprofile.service';
+import { EditProfileService } from 'src/app/services/editprofile.service';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit {
   public tel: Number;
   editForm: FormGroup;
   constructor(private formBuilder: FormBuilder,
-    private editprofileService: EditprofileService,
+    private editprofileService: EditProfileService,
     public authService: AuthService) {
     this.profileForm = this.formBuilder.group({
       addresse: ['', Validators.required],

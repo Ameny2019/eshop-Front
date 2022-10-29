@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import Swal from "sweetalert2";
 import { CartService } from "../../services/cart.service";
 import { Router } from "@angular/router";
-import { EditprofileService } from '../../services/editprofile.service';
+import { EditProfileService } from '../../services/editprofile.service';
 import { environment } from 'src/environments/environment';
 import { MessageService } from 'primeng/api';
 
@@ -26,7 +26,7 @@ export class CheckoutComponent implements OnInit {
   constructor(public cartServ: CartService,
     private messageService: MessageService,
     private router: Router,
-    public editprofileService: EditprofileService,
+    public editprofileService: EditProfileService,
   ) {
   }
   ngOnInit(): void {
