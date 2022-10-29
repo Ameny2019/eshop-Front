@@ -13,8 +13,8 @@ import { ActivatedRoute } from '@angular/router';
 export class DetailComponent implements OnInit {
   product: any;
   idProduct: any;
-  quantity: number = 1;
-  availableQuantity: number = 1;
+  quantity: number = 0;
+  availableQuantity: number = 0;
   constructor(
     private router: ActivatedRoute,
     private homeService: HomeService,

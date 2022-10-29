@@ -16,14 +16,26 @@ export class CartService {
   }
 
   addToCartTemp(data: any) {
-    let product = this.tempCartItems.find((produit) => produit.productId === data.productId);
-    if (product === null || product === undefined) {
-      this.tempCartItems.push(data);
-    } else {
-      product.quantity += data.quantity;
+    // check of availibiliy inthe stock
+    let availableQuantity = 0;
+    if(data.articleInfo.producType === 'estamp'){
+      availableQuantity = data.articleInfo.estamp.QunatityEstampDisponible;
+    }else{
+      availableQuantity = data.articleInfo.efleur.QunatityEfleurDisponible;
     }
-    this.messageService.add({severity: 'success', summary: 'Panier', detail: 'Produit ajouté avec succès'});
-    this.persistCart();
+    const isAvailble = (availableQuantity <= data.quantity) && (availableQuantity > 0);
+    if(isAvailble){
+      let product = this.tempCartItems.find((produit) => produit.productId === data.productId);
+      if (product === null || product === undefined) {
+        this.tempCartItems.push(data);
+      } else {
+        product.quantity += data.quantity;
+      }
+      this.messageService.add({severity: 'success', summary: 'Panier', detail: 'Produit ajouté avec succès.'});
+      this.persistCart();
+    }else{
+      this.messageService.add({severity: 'info', summary: 'Panier', detail: 'La quantité du produit que vous avez ajouté est insuffisante.'});
+    }
   }
 
   getAllQuantity() {

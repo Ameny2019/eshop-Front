@@ -2,7 +2,8 @@
 <hr>
 <div class="container" name="efleurs">
   <h3 class=" text-center text-warning title-text" style="margin-top: 50px;"> Fleurs de La poste tunisienne</h3>
-  <h4 class="text-center sub-title-text" style="margin-bottom: 50px;">Des bouquets de fleurs confectionnés avec amour par nos
+  <h4 class="text-center sub-title-text" style="margin-bottom: 50px;">Des bouquets de fleurs confectionnés avec amour
+    par nos
     artisans fleuristes !</h4>
 </div>
 <div class="row m-0 px-xl-5 pb-3">
@@ -17,7 +18,10 @@
         <div class="d-flex justify-content-center">
           <h6 class="price">Prix : {{product?.price}}.000 DTN</h6>
         </div>
-        <span class="badge badge-pill badge-danger"> Epuisé </span>
+        <span *ngIf="product?.efleur?.QunatityEfleurDisponible<1" class="badge badge-pill badge-danger">Epuisé</span>
+        <span *ngIf="product?.efleur?.QunatityEfleurDisponible>=1 && product?.efleur?.QunatityEfleurDisponible<10"
+          class="badge badge-pill badge-warning">Stock Limité</span>
+        <span *ngIf="product?.efleur?.QunatityEfleurDisponible>=10" class="badge badge-pill badge-success">En Stock</span>
       </div>
 
       <div class="card-footer d-flex justify-content-center bg-light border">

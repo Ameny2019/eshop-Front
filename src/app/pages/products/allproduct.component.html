@@ -46,7 +46,10 @@
           <div class="d-flex justify-content-center">
             <h6 class="price">Prix : {{product?.price/1000}} DTN</h6>
           </div>
-          <span class="badge badge-pill badge-success">En Stock</span>
+          <span *ngIf="product?.estamp?.QunatityEstampDisponible<1" class="badge badge-pill badge-danger">Epuisé</span>
+          <span *ngIf="product?.estamp?.QunatityEstampDisponible>=1 && product?.estamp?.QunatityEstampDisponible<10"
+            class="badge badge-pill badge-warning">Stock Limité</span>
+          <span *ngIf="product?.estamp?.QunatityEstampDisponible>=10" class="badge badge-pill badge-success">En Stock</span>
         </div>
         <div class="card-footer d-flex justify-content-center bg-light border">
           <a [routerLink]="['/products/details', product._id]" class="btn btn-sm text-dark "><i
@@ -70,7 +73,11 @@
           <div class="d-flex justify-content-center">
             <h6 class="price">Prix : {{product?.price}}.000 DTN</h6>
           </div>
-          <span class="badge badge-pill badge-danger"> Epuisé</span>
+          <span *ngIf="product?.efleur?.QunatityEfleurDisponible<1" class="badge badge-pill badge-danger">Epuisé</span>
+          <span *ngIf="product?.efleur?.QunatityEfleurDisponible>=1 && product?.efleur?.QunatityEfleurDisponible<10"
+            class="badge badge-pill badge-warning">Stock Limité</span>
+          <span *ngIf="product?.efleur?.QunatityEfleurDisponible>=10" class="badge badge-pill badge-success">En
+            Stock</span>
         </div>
 
         <div class="card-footer d-flex justify-content-center bg-light border">
