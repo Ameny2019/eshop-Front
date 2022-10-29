@@ -60,8 +60,7 @@ export class CheckoutComponent implements OnInit {
         token: (stripeToken: any) => {
           // Payment has been successfully
           this.messageService.add({ severity: 'success', summary: "Félicitation", detail: 'Votre commande à été payé avec succès.' });
-          // this.cartServ.clearCart();
-          console.log("Create invoice");
+          this.saveCart();
         },
       });
 
@@ -81,11 +80,15 @@ export class CheckoutComponent implements OnInit {
     let items = [];
     for (let item of this.cartServ.tempCartItems) {
       const productName = item?.articleInfo.producType == 'estamp' ? item.articleInfo.estamp.sujet : item.articleInfo.efleur?.nom;
+      const productPrice = item?.articleInfo.producType == 'estamp' ? `${item.articleInfo.price/1000}` : `${item.articleInfo.price}.000`;
+      const price = item?.articleInfo.producType == 'estamp' ? Number(item.articleInfo.price) : Number(item.articleInfo.price) * 1000;
       items.push({
+        idProduct: item?.articleInfo._id,
+        producType: item?.articleInfo.producType,
         product_name: productName,
         quantity: item.quantity,
-        price: item.articleInfo.price,
-        total: item.articleInfo.price * item.quantity
+        price: productPrice,
+        total: price * item.quantity
       })
     }
     let cart: any =
@@ -96,6 +99,7 @@ export class CheckoutComponent implements OnInit {
     };
     this.cartServ.saveCart(cart).subscribe((res: any) => {
       this.router.navigate(['/invoice', res._id]);
+      this.cartServ.clearCart();
     });
   }
 

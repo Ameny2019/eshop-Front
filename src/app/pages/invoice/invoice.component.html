@@ -36,15 +36,15 @@
     <div class="col-lg-6 profile" *ngIf="myProfile">
       <div class="d-flex justify-content-between">
         <span class="font-weight-bold">Nom du client :</span>
-        <span>{{myProfile.nom}}</span>
+        <span>{{myProfile?.nom}}</span>
       </div>
       <div class="d-flex justify-content-between">
         <span class="font-weight-bold">E-mail :</span>
-        <span>{{myProfile.email}}</span>
+        <span>{{myProfile?.email}}</span>
       </div>
       <div class="d-flex justify-content-between">
         <span class="font-weight-bold">Adresse de livraison :</span>
-        <span>{{myProfile.adresse}}</span>
+        <span>{{myProfile?.adresse}}</span>
       </div>
     </div>
   </header>
@@ -55,17 +55,17 @@
       <table class="meta mt-5">
         <tr>
           <th><span>Facture N°</span></th>
-          <td><span>{{cart._id}}</span></td>
+          <td><span>{{cart?._id}}</span></td>
         </tr>
         <tr>
           <th><span>Date</span></th>
-          <td><span>{{cart.createdAt | date:'short'}}</span></td>
+          <td><span>{{cart?.createdAt | date:'short'}}</span></td>
         </tr>
         <tr>
           <th><span>Montant à payer </span></th>
           <td>
             <span id="prefix"></span>
-            <span>{{cart.subTotal}} DTN</span>
+            <span>{{cart?.subTotal}} DTN</span>
           </td>
         </tr>
       </table>
@@ -86,10 +86,15 @@
         <tbody>
           <tr *ngFor="let item of cart.items; let i=index">
             <td><span>{{i+1}}.</span></td>
-            <td><span>{{item.product_name}}</span></td>
-            <td><span data-prefix>{{item.quantity}}</span></td>
-            <td><span>{{item.price}}</span></td>
-            <td><span data-prefix></span><span>{{item.total/1000 }}</span> DT </td>
+            <td><span>{{item?.product_name}}</span></td>
+            <td><span data-prefix>{{item?.quantity}}</span></td>
+            <td>
+              <span>{{item?.price}} DTN</span>
+            </td>
+            <td>
+              <span data-prefix></span>
+              <span>{{item?.total/1000 }} DTN</span>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -100,7 +105,7 @@
       <table class="balance">
         <tr>
           <th><span>Total</span></th>
-          <td><span data-prefix></span><span>{{cart.subTotal}}</span> DTN</td>
+          <td><span data-prefix></span><span>{{cart?.subTotal}}</span> DTN</td>
         </tr>
       </table>
     </section>
