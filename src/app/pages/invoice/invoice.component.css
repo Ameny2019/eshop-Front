@@ -15,8 +15,6 @@ body { box-sizing: border-box; height: 11in; margin: 0 auto; overflow: hidden; p
 body { background: #FFF; border-radius: 1px; box-shadow: 0 0 1in -0.25in rgba(0, 0, 0, 0.5); }
 
 /* header */
-
-header { margin: 0 0 3em; }
 header:after { clear: both; content: ""; display: table; }
 
 header h1 { background: #e40101; border-radius: 0.25em; color: #FFF; margin: 0 0 1em; padding: 0.5em 0; }
@@ -41,7 +39,10 @@ article address { float: left; font-size: 125%; font-weight: bold; }
 
 /* table meta & balance */
 
-table.meta, table.balance { float: right; width: 36%; }
+table.meta, table.balance {
+  float: right;
+  /* width: 36%; */
+ }
 table.meta:after, table.balance:after { clear: both; content: ""; display: table; }
 
 /* table meta */
@@ -87,7 +88,7 @@ table.sign tr td {
   border-color: transparent;
 }
 @media print {
-  
+
   html { background: none; padding: 0; }
   body { box-shadow: none; margin: 0; }
   span:empty { display: none; }
@@ -95,3 +96,35 @@ table.sign tr td {
 }
 
 @page { margin: 0; }
+
+
+.top-box
+{
+  background-color: #1E1B58;
+}
+
+.min-h {
+  min-height: 200px
+}
+
+.box-title {
+  color: #fdc600;
+}
+
+.logo-poste {
+  width: 130px;
+  margin: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+
+@media screen and (max-width: 991px){
+  .profile{
+    margin-top: 20px;
+  }
+  .poste-contact{
+    margin-right: 15px;
+    margin-left: 15px;
+  }
+}
