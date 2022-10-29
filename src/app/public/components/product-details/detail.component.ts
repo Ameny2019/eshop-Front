@@ -52,7 +52,6 @@ export class DetailComponent implements OnInit {
       quantity: this.quantity,
       articleInfo: product,
     };
-    console.log('article to cart is :', article);
     this.cartService.addToCartTemp(article);
   }
 }

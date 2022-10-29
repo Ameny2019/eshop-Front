@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import Swal from "sweetalert2";
-import {CartService} from "../../services/cart.service";
-import {AuthService} from "../../services/auth.service";
-import {Router} from "@angular/router";
+import { CartService } from "../../services/cart.service";
+import { AuthService } from "../../services/auth.service";
+import { Router } from "@angular/router";
 import { Validators } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { EditprofileService } from '../../services/editprofile.service';
+import { environment } from 'src/environments/environment.prod';
 
 @Component({
   selector: 'app-checkout',
@@ -14,73 +15,45 @@ import { EditprofileService } from '../../services/editprofile.service';
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent implements OnInit {
-
-
-  public profileForm: FormGroup;
+  public id: string;
   public nom: string;
-  public role:string; 
-  public email:string; 
-  public adresse:string; 
-  public id:string;
-  public tel:Number;
-  editForm:FormGroup;
-
-
-
-
-
+  public tel: Number;
+  public email: string;
+  public adresse: string;
 
   paymentHandler: any = null;
-  stripeAPIKey: any =
-    'pk_test_51JdXf9DRYvhLYt7LKXzoEVUDlUQMXzXyDMHYKOEo0RRsLm6ZUYCfgPOaf6AH74OcyORolgD406J76HXvbnIPbLTD00XWoH3GaV';
+  stripeAPIKey: any = environment.stripeAPIKey;
   modepay: any;
   type: string = 'password';
-  constructor(public cartServ: CartService, private authService: AuthService, private router: Router,private formBuilder: FormBuilder,public editprofileService:EditprofileService ) { 
-  this.profileForm = this.formBuilder.group({
-    addresse: ['', Validators.required],
-
-    client: ['', Validators.required],
-
-    email: ['', Validators.required],
-
-    nom: ['', Validators.required],
-
-    password: ['', Validators.required],
-
-    tel: [''],
-   
-
-    
-  });
- }
+  constructor(public cartServ: CartService,
+    private authService: AuthService,
+    private router: Router,
+    public editprofileService: EditprofileService,
+    ) {
+  }
   ngOnInit(): void {
     this.invokeStripe();
-    let data = localStorage.getItem('user');
-    let user = JSON.parse(data);
-    if (user) {
-      this.profileForm.controls['client'].setValue(user.nom);
-      this.profileForm.controls['email'].setValue(user.email);
-      this.nom=user.nom ; 
-      this.role = user.role ; 
-      this.email = user.email ; 
-      this.adresse = user.adresse ; 
-      this.id = user._id ;
-      this.tel = user.tel ;
-      //this.profileForm.controls['addresse'].setValue(user.addresse);
-    }
-
+    this.editprofileService
+    .getProfile()
+    .subscribe((result: any) => {
+      this.id = result.data._id;
+      this.nom = result.data.nom;
+      this.tel = result.data.tel;
+      this.email = result.data.email;
+      this.adresse = result.data.adresse;
+    });
   }
 
   totalSum(items: any): number {
     let sum: number = 0;
-    items.forEach((itm) => {
-      sum = sum + itm.quantity * Number(itm.articleInfo.price);
+    items.forEach((item:any) => {
+      sum += item.quantity * Number(item.articleInfo.price);
     });
     return sum;
   }
 
   makePayment(amount: any) {
-    if (this.modepay =="choix3") {
+    if (this.modepay == "choix3") {
       const paymentHandler = (<any>window).StripeCheckout.configure({
         key: this.stripeAPIKey,
         locale: 'auto',
@@ -107,11 +80,11 @@ export class CheckoutComponent implements OnInit {
 
     }
 
-else { this.saveCart()}
+    else { this.saveCart() }
 
-    }
-    saveCart(){
-    let subtotal=this.totalSum(this.cartServ.tempCartItems)/1000;
+  }
+  saveCart() {
+    let subtotal = this.totalSum(this.cartServ.tempCartItems) / 1000;
     let items = [];
     for (let item of this.cartServ.tempCartItems) {
       items.push({
@@ -121,15 +94,16 @@ else { this.saveCart()}
         total: item.articleInfo.price * item.quantity
       })
     }
-    let cart:any =
-      {subTotal:subtotal,
-        items: items,
-        user: this.authService.getCoonectedUser()._id
-      };
-      this.cartServ.saveCart(cart).subscribe((res:any) => {
-        this.router.navigate(['/invoice',res._id]);
-      });
-    }
+    let cart: any =
+    {
+      subTotal: subtotal,
+      items: items,
+      user: this.authService.getCoonectedUser()._id
+    };
+    this.cartServ.saveCart(cart).subscribe((res: any) => {
+      this.router.navigate(['/invoice', res._id]);
+    });
+  }
   //saveCart(cart)
 
 
