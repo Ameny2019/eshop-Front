@@ -9,47 +9,58 @@
 
 <hr>
 <div class="container-fluid pt-5">
-  <div class="row px-xl-5">
-    <div class="col-lg-8">
+  <div class="row m-0 px-xl-5">
+    <div class="col-lg-7">
       <div class="mb-4">
         <h4 class="font-weight-semi-bold mb-4">Informations personnelles </h4>
         <div class="row">
           <div class="col-md-6 form-group">
-            <label>Nom & prénom</label>
+            <label class="font-weight-bold">Nom & prénom</label>
             <p>{{nom}}</p>
           </div>
           <div class="col-md-6 form-group">
-            <label>E-mail</label>
+            <label class="font-weight-bold">E-mail</label>
             <p>{{email}}</p>
           </div>
           <div class="col-md-6 form-group">
-            <label>Numero de téléphone</label>
+            <label class="font-weight-bold">Numero de téléphone</label>
             <p>{{tel}}</p>
           </div>
           <div class="col-md-6 form-group">
-            <label>Addresse</label>
+            <label class="font-weight-bold">Adresse</label>
             <p>{{adresse}}</p>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-lg-4">
+    <div class="col-lg-5">
       <div class="card border-secondary mb-5">
         <div class="card-header bg-secondary border-0">
           <h4 class="font-weight-semi-bold m-0">Détails commande </h4>
         </div>
         <div class="card-body">
           <h5 class="font-weight-medium mb-3">Produits</h5>
-          <div class="d-flex justify-content-between" *ngFor="let item of cartServ.tempCartItems">
-            <p>{{item.articleInfo.estamp.sujet}}</p>
-            <p> P.U {{item.articleInfo.price}} x {{item.quantity}}</p>
-          </div>
-          <div class="d-flex justify-content-between mb-3 pt-1">
+          <div class="d-flex justify-content-between" *ngFor="let item of cartServ.tempCartItems; let i=index">
+            <p>
+              {{i+1}}.
+              <span *ngIf="item.articleInfo.estamp">{{item.articleInfo?.estamp?.sujet}}</span>
+              <span *ngIf="item.articleInfo.efleur">{{item.articleInfo.efleur?.nom}}</span>
+            </p>
+            <p> P.U
+              <span *ngIf="item.articleInfo.estamp">
+                {{item.articleInfo.price/1000}}
+              </span>
+              <span *ngIf="item.articleInfo.efleur">
+                {{item.articleInfo.price}}.000
+              </span>
+              x {{item.quantity}}</p>
           </div>
           <div class="card-footer border-secondary bg-transparent">
             <div class="d-flex justify-content-between mt-2">
               <h5 class="font-weight-bold">Total</h5>
-              <h5 class="font-weight-bold">{{totalSum(cartServ.tempCartItems)/1000}}Dt</h5>
+              <h5 class="font-weight-bold">
+                {{totalSum(cartServ.tempCartItems)/1000}} DTN
+              </h5>
             </div>
           </div>
         </div>

@@ -3,9 +3,6 @@ import Swal from "sweetalert2";
 import { CartService } from "../../services/cart.service";
 import { AuthService } from "../../services/auth.service";
 import { Router } from "@angular/router";
-import { Validators } from '@angular/forms';
-import { FormGroup } from '@angular/forms';
-import { FormBuilder } from '@angular/forms';
 import { EditprofileService } from '../../services/editprofile.service';
 import { environment } from 'src/environments/environment.prod';
 
@@ -47,7 +44,8 @@ export class CheckoutComponent implements OnInit {
   totalSum(items: any): number {
     let sum: number = 0;
     items.forEach((item:any) => {
-      sum += item.quantity * Number(item.articleInfo.price);
+      const price = item?.articleInfo.producType == 'estamp' ? Number(item.articleInfo.price) : Number(item.articleInfo.price) *1000;
+      sum += item.quantity * price;
     });
     return sum;
   }
@@ -58,7 +56,7 @@ export class CheckoutComponent implements OnInit {
         key: this.stripeAPIKey,
         locale: 'auto',
         currency: 'USD',
-        token: function (stripeToken: any) {
+        token: (stripeToken: any) => {
           console.log(stripeToken);
           Swal.fire({
             position: 'top-end',
@@ -73,6 +71,7 @@ export class CheckoutComponent implements OnInit {
 
       paymentHandler.open({
         name: 'La Poste Tunisienne',
+        email: this.email,
         description: 'Confirmation des achats',
         amount: amount / 10,
       });
@@ -83,12 +82,14 @@ export class CheckoutComponent implements OnInit {
     else { this.saveCart() }
 
   }
+
   saveCart() {
     let subtotal = this.totalSum(this.cartServ.tempCartItems) / 1000;
     let items = [];
     for (let item of this.cartServ.tempCartItems) {
+      const productName = item?.articleInfo.producType == 'estamp' ? item.articleInfo.estamp.sujet : item.articleInfo.efleur?.nom;
       items.push({
-        product_name: item.articleInfo.estamp.sujet,
+        product_name: productName,
         quantity: item.quantity,
         price: item.articleInfo.price,
         total: item.articleInfo.price * item.quantity
@@ -104,13 +105,10 @@ export class CheckoutComponent implements OnInit {
       this.router.navigate(['/invoice', res._id]);
     });
   }
-  //saveCart(cart)
-
 
   invokeStripe() {
     if (!window.document.getElementById('stripe-script')) {
       const script = window.document.createElement('script');
-
       script.id = 'stripe-script';
       script.type = 'text/javascript';
       script.src = 'https://checkout.stripe.com/checkout.js';
