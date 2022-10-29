@@ -5,6 +5,7 @@ import { AuthService } from "../../services/auth.service";
 import { Router } from "@angular/router";
 import { EditprofileService } from '../../services/editprofile.service';
 import { environment } from 'src/environments/environment';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-checkout',
@@ -24,7 +25,7 @@ export class CheckoutComponent implements OnInit {
   deliveryMethod: any = 'Au bureau de poste';
   payementMethod: any = 'À la livraison';
   constructor(public cartServ: CartService,
-    private authService: AuthService,
+    private messageService: MessageService,
     private router: Router,
     public editprofileService: EditprofileService,
   ) {
@@ -58,16 +59,18 @@ export class CheckoutComponent implements OnInit {
         locale: 'auto',
         currency: 'USD',
         token: (stripeToken: any) => {
-          console.log(stripeToken);
           Swal.fire({
             position: 'top-end',
             icon: 'success',
-            title: 'Votre commande à été effectuer avec success',
+            title: 'Votre commande à été payé avec success.',
             showConfirmButton: false,
           }).then(() => {
-            console.log("ss");
-            this.cartServ.clearCart();
           });
+
+          console.log(stripeToken);
+          alert('Payment has been successfull!');
+          // this.cartServ.clearCart();
+          console.log("Create invoice");
         },
       });
 
@@ -98,7 +101,7 @@ export class CheckoutComponent implements OnInit {
     {
       subTotal: subtotal,
       items: items,
-      user: this.authService.getCoonectedUser()._id
+      user: this.id
     };
     this.cartServ.saveCart(cart).subscribe((res: any) => {
       this.router.navigate(['/invoice', res._id]);
@@ -115,10 +118,7 @@ export class CheckoutComponent implements OnInit {
         this.paymentHandler = (<any>window).StripeCheckout.configure({
           key: this.stripeAPIKey,
           locale: 'auto',
-          token: function (stripeToken: any) {
-            console.log(stripeToken);
-            alert('Payment has been successfull!');
-          },
+          token: (stripeToken: any) => { },
         });
       };
       window.document.body.appendChild(script);
