@@ -19,7 +19,7 @@
           <input type="text" name="keyword" id="keyword" bindLabel="name"
             placeholder="Parcourez le magasin entier ici ..." class="form-control bg-secondary input-text search-input"
             role="combobox" bindValue="id" aria-haspopup="false" aria-autocomplete="both" autocomplete="off"
-            aria-expanded="false" lect [(ngModel)]="searchText"/>
+            aria-expanded="false" lect [(ngModel)]="searchText" />
           <div class="input-group-append">
             <button type="button" class="input-group-text search-btn">
               <i class="fa fa-search text-white"></i>
@@ -34,56 +34,59 @@
 
 <!-- all products -->
 <div class="container-fluid">
-  <div class="row">
-    <!-- stamps section -->
-    <div class="row px-xl-5 pb-3">
-      <div class="col-lg-3 col-md-6 col-sm-12 pb-1" *ngFor='let product of estampsProducts | filter: searchText'>
-        <div class="card product-item border-0 mb-4">
-          <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-            <img [routerLink]="['/products/details', product._id]" class="img-fluid w-100 product-img"
-              src="http://localhost:3000/{{product?.estamp?.photo}}" alt="Timbre de la poste">
+  <!-- stamps section -->
+  <div class="row m-0 px-xl-5 pb-3">
+    <div class="col-lg-3 col-md-6 col-sm-12 pb-1" *ngFor='let product of estampsProducts | filter: searchText'>
+      <div class="card product-item border-0 mb-4">
+        <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+          <img [routerLink]="['/products/details', product._id]" class="img-fluid w-100 product-img"
+            src="http://localhost:3000/{{product?.estamp?.photo}}" alt="Timbre de la poste">
+        </div>
+        <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+          <h6 class="text-truncate mb-3">{{product?.estamp?.sujet}}</h6>
+          <div class="d-flex justify-content-center">
+            <h6 class="price">Prix : {{product?.price/1000}} DTN</h6>
           </div>
-          <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-            <h6 class="text-truncate mb-3">{{product?.estamp?.sujet}}</h6>
-            <div class="d-flex justify-content-center">
-              <h6 class="price">Prix : {{product?.price/1000}} DTN</h6>
-            </div>
-            <span class="badge badge-pill badge-success">En Stock</span>
-          </div>
-          <div class="card-footer d-flex justify-content-center bg-light border">
-            <a [routerLink]="['/products/details', product._id]" class="btn btn-sm text-dark "><i
-                class="fas fa-eye text-primary mr-1"></i>Voir détails</a>
-            <!-- <a class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Ajouter au panier</a> -->
-          </div>
+          <span class="badge badge-pill badge-success">En Stock</span>
+        </div>
+        <div class="card-footer d-flex justify-content-center bg-light border">
+          <a [routerLink]="['/products/details', product._id]" class="btn btn-sm text-dark "><i
+              class="fas fa-eye text-primary mr-1"></i>Voir détails</a>
+          <!-- <a class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Ajouter au panier</a> -->
         </div>
       </div>
     </div>
+  </div>
 
-    <!-- fleurs section -->
-    <div class="row px-xl-5 pb-3">
-      <div class="col-lg-3 col-md-6 col-sm-12 pb-1" *ngFor="let product of fleursProducts | filter:searchText">
-        <div class="card product-item border-0 mb-4">
-          <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-            <img [routerLink]="['/products/details', product._id]" class="img-fluid w-100 product-img"
-              src="http://localhost:3000/{{product?.efleur?.photo}}" alt="Fleur de la poste">
+  <!-- fleurs section -->
+  <div class="row m-0 px-xl-5 pb-3">
+    <div class="col-lg-3 col-md-6 col-sm-12 pb-1" *ngFor="let product of fleursProducts | filter:searchText">
+      <div class="card product-item border-0 mb-4">
+        <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+          <img [routerLink]="['/products/details', product._id]" class="img-fluid w-100 product-img"
+            src="http://localhost:3000/{{product?.efleur?.photo}}" alt="Fleur de la poste">
+        </div>
+        <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+          <h6 class="text-truncate mb-3">{{product?.efleur?.nom}}</h6>
+          <div class="d-flex justify-content-center">
+            <h6 class="price">Prix : {{product?.price}},000 DTN</h6>
           </div>
-          <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-            <h6 class="text-truncate mb-3">{{product?.efleur?.nom}}</h6>
-            <div class="d-flex justify-content-center">
-              <h6 class="price">Prix : {{product?.price}},000 DTN</h6>
-            </div>
-            <span class="badge badge-pill badge-danger"> Epuisé</span>
-          </div>
+          <span class="badge badge-pill badge-danger"> Epuisé</span>
+        </div>
 
-          <div class="card-footer d-flex justify-content-center bg-light border">
-            <a [routerLink]="['/products/details', product._id]" class="btn btn-sm text-dark p-0"><i
-                class="fas fa-eye text-primary mr-1"></i>Voir détails</a>
-            <!-- <a class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Ajouter au panier</a> -->
-          </div>
+        <div class="card-footer d-flex justify-content-center bg-light border">
+          <a [routerLink]="['/products/details', product._id]" class="btn btn-sm text-dark p-0"><i
+              class="fas fa-eye text-primary mr-1"></i>Voir détails</a>
+          <!-- <a class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Ajouter au panier</a> -->
         </div>
       </div>
     </div>
   </div>
 </div>
 <hr>
-<app-footer></app-footer>
+
+<!-- Footer Start -->
+<div class="container-fluid bg-secondary text-dark mt-5 pt-5">
+  <app-footer></app-footer>
+</div>
+<!-- Footer End -->
