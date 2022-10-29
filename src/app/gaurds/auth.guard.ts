@@ -27,7 +27,7 @@ export class AuthGuard implements CanActivate {
           summary: 'La session a été expiré.',
           detail: 'Votre session a été expiré. Merci de refaire le login pour accéder à votre espace.'
         });
-        localStorage.clear();
+        localStorage.removeItem('token');
         this.router.navigate(['/auth/login']);
         return false;
       }

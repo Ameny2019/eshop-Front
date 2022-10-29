@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import Swal from "sweetalert2";
 import { CartService } from "../../services/cart.service";
-import { AuthService } from "../../services/auth.service";
 import { Router } from "@angular/router";
 import { EditprofileService } from '../../services/editprofile.service';
 import { environment } from 'src/environments/environment';
@@ -59,16 +58,8 @@ export class CheckoutComponent implements OnInit {
         locale: 'auto',
         currency: 'USD',
         token: (stripeToken: any) => {
-          Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            title: 'Votre commande à été payé avec success.',
-            showConfirmButton: false,
-          }).then(() => {
-          });
-
-          console.log(stripeToken);
-          alert('Payment has been successfull!');
+          // Payment has been successfully
+          this.messageService.add({ severity: 'success', summary: "Félicitation", detail: 'Votre commande à été payé avec succès.' });
           // this.cartServ.clearCart();
           console.log("Create invoice");
         },

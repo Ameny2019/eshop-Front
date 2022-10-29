@@ -93,7 +93,7 @@ export class AuthService {
   }
 
   clearUserData(){
-    localStorage.clear();
+    localStorage.removeItem('token');
     this.router.navigate(['/']);
     this.isLoginSubject.next(false);
   }

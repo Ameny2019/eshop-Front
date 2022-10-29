@@ -22,7 +22,7 @@ export class ResponseInterceptor implements HttpInterceptor {
         // Unauthenticated User error
         if (error.status === 401) {
           // reomve localStorage data
-          localStorage.clear();
+          localStorage.removeItem('token');
           this.messageService.add({
             severity: 'info',
             summary: 'La session a été expiré.',
