@@ -31,6 +31,10 @@ export class DetailComponent implements OnInit {
         }else{
           this.availableQuantity = this.product.efleur.QunatityEfleurDisponible;
         }
+        // update quantity if availableQuantity > 0
+        if(this.availableQuantity > 0){
+          this.quantity = 1;
+        }
       });
   }
 
