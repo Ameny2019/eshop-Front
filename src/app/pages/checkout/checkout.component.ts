@@ -4,7 +4,7 @@ import { CartService } from "../../services/cart.service";
 import { AuthService } from "../../services/auth.service";
 import { Router } from "@angular/router";
 import { EditprofileService } from '../../services/editprofile.service';
-import { environment } from 'src/environments/environment.prod';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-checkout',
@@ -64,7 +64,8 @@ export class CheckoutComponent implements OnInit {
             title: 'Votre commande à été effectuer avec success',
             showConfirmButton: false,
           }).then(() => {
-
+              console.log("ss");
+              this.cartServ.clearCart();
           });
         },
       });
@@ -75,12 +76,9 @@ export class CheckoutComponent implements OnInit {
         description: 'Confirmation des achats',
         amount: amount / 10,
       });
-      //this.cartServ.clearCart();
-
+    }else {
+      this.saveCart();
     }
-
-    else { this.saveCart() }
-
   }
 
   saveCart() {
@@ -118,10 +116,10 @@ export class CheckoutComponent implements OnInit {
           locale: 'auto',
           token: function (stripeToken: any) {
             console.log(stripeToken);
+            alert('Payment has been successfull!');
           },
         });
       };
-
       window.document.body.appendChild(script);
     }
   }
