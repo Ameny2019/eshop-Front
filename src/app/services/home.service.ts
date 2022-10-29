@@ -9,8 +9,9 @@ export class HomeService {
 
   constructor(private http: HttpClient) { }
 
-  getProducts() {
-    return this.http.get(`${environment.baseURL}/home/products`);
+  getProducts(limit?:number) {
+    const query = limit ? `?limit=${limit}` : '';
+    return this.http.get(`${environment.baseURL}/home/products${query}`);
   }
   getProductDetails(id:any) {
     return this.http.get(`${environment.baseURL}/home/products/${id}`);

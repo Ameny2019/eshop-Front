@@ -11,7 +11,7 @@ export class AllproductComponent implements OnInit {
   fleursProducts: any;
   estampsProducts: any;
   searchText: string;
-  
+
   constructor(private homeService: HomeService) { }
 
   ngOnInit(): void {
@@ -19,7 +19,7 @@ export class AllproductComponent implements OnInit {
   }
 
   getAllProducts() {
-    this.homeService.getProducts().subscribe(
+    this.homeService.getProducts(40).subscribe(
       (res: any) => {
         this.fleursProducts = res.fleursProducts;
         this.estampsProducts = res.estampsProducts;
