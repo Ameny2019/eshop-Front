@@ -7,7 +7,8 @@
   display: flex;
   flex-direction: column;
   background-color: rgba(128, 128, 128, 0.068);
-  height: 100vh;
+  /* height: 100vh; */
+  padding-bottom: 30px;
 }
 
 #forminscri {
