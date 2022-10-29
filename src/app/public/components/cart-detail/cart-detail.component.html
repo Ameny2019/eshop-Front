@@ -1,18 +1,10 @@
 
 <!-- Page Header Start -->
-
 <div class="container-fluid mb-5 " style="background-color: #1E1B58;">
     <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 200px">
         <h1 class="font-weight-semi-bold text-uppercase mb-3" style=" color:#fdc600">Votre Panier</h1>
-
     </div>
 </div>
-
-
-
-
-
-
 <div class="container-fluid pt-5">
     <div class="row px-xl-5">
         <div class="col-lg-8 table-responsive mb-5">
@@ -29,7 +21,7 @@
                 <tbody>
                     <tr *ngFor="let prod of cartServ.tempCartItems;let index=index">
                         <th scope="row">{{prod.articleInfo.estamp.sujet}}</th>
-                        <!-- <td>{{prod.articleInfo.nom}}</td>       -->
+                        <!-- <td>{{prod.articleInfo.efleur.nom}}</td> -->
                         <td>{{prod.articleInfo.price}}</td>
                         <td>{{prod.quantity}}</td>
                         <td>{{prod.quantity*toNumber(prod.articleInfo.price)/1000}}</td>
@@ -38,7 +30,6 @@
                 </tbody>
             </table>
         </div>
-
         <div class="col-lg-4">
             <!-- <form class="mb-5" action="">
                 <div class="input-group">
@@ -63,22 +54,18 @@
                 <div class="card-footer border-secondary bg-transparent">
                     <div class="d-flex justify-content-between mt-2">
                         <h5 class="font-weight-bold">Total</h5>
-                        <h5 class="font-weight-bold">{{totalSum(cartServ.tempCartItems)/1000}}Dt</h5>
+                        <h5 class="font-weight-bold">{{totalSum(cartServ.tempCartItems)/1000}} DTN</h5>
                     </div>
                     <button class="btn btn-block btn-warning my-3 py-3" *ngIf="cartServ.tempCartItems.length > 0" (click)="cartStep2()">Confirmer votre commande</button>
                 </div>
             </div>
-           
         </div>
     </div>
   <div class="row px-xl-5">
     <div class="col-8">
-
-
     </div>
     <div class="col-4">
       <h1></h1>
-
     </div>
   </div>
 </div>

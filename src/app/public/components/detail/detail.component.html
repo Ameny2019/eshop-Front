@@ -6,9 +6,9 @@
       <div id="product-carousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner border">
           <div class="carousel-item active" style="display:flex;justify-content: center; padding: 40px;">
-            <img class="h-75 w-75" *ngIf="product.producType == 'efleur'"
+            <img class="h-75 w-75" *ngIf="product?.producType == 'efleur'"
               src="http://localhost:3000/{{ product?.efleur?.photo }}" alt="Image" />
-            <img class="h-75 w-75" *ngIf="product.producType == 'estamp'"
+            <img class="h-75 w-75" *ngIf="product?.producType == 'estamp'"
               src="http://localhost:3000/{{ product?.estamp?.photo }}" alt="Image" />
           </div>
         </div>
@@ -20,8 +20,8 @@
         </a>
       </div>
     </div>
-
-    <div class="col-lg-7 pb-5" *ngIf="product.producType == 'estamp'">
+    <!--  estamp infos -->
+    <div class="col-lg-7 pb-5" *ngIf="product?.producType == 'estamp'">
       <h3 class="font-weight-semi-bold">{{ product?.estamp?.sujet }}</h3>
       <div class="d-flex mb-3">
         <!-- <div class="text-warning mr-2">
@@ -33,38 +33,32 @@
         </div> -->
         <!-- <small class="pt-1">xxxx</small> -->
       </div>
-      <h3 class="font-weight-semi-bold mb-4">Prix : {{ product?.price/1000 }} DT</h3>
-
+      <h3 class="font-weight-semi-bold mb-4">Prix : {{ product?.price/1000 }} DTN</h3>
       <div class="d-flex mb-3">
         <p class="text-dark font-weight-medium mb-0 mr-3">
           ref : {{ product?.estamp?.reference }}
         </p>
-        <form>
-
-        </form>
       </div>
-
       <!-- <h3>
         Quantité disponible : {{ product.estamp.QunatityEstampDisponible }}
       </h3> -->
       <div class="d-flex align-items-center mb-4 pt-2">
         <div class="input-group quantity mr-3" style="max-width: 150px">
           <div class="input-group-btn">
-            <button class="btn btn-warning btn-minus" (click)="moin()">
+            <button class="btn btn-warning btn-minus" (click)="moinsQuantity()">
               <i class="fa fa-minus"></i>
             </button>
           </div>
           <input type="number" min="1" style="width: 65px" [max]="product.estamp.QunatityEstampDisponible"
-            class="form-control bg-secondary text-center" [(ngModel)]="n" />
+            class="form-control bg-secondary text-center" [(ngModel)]="quantity" />
           <div class="input-group-btn">
-            <button class="btn btn-warning btn-plus" (click)="plus()">
+            <button class="btn btn-warning btn-plus" (click)="addQuantity()">
               <i class="fa fa-plus"></i>
             </button>
           </div>
         </div>
-
       </div>
-      <button class="btn btn-warning px-3" (click)="AjoutProductToCart(product)">
+      <button class="btn btn-warning px-3" (click)="addProductToCart(product)">
         <i class="fa fa-shopping-cart mr-1"></i> Ajouter au panier
       </button>
       <div class="d-flex pt-2">
@@ -81,8 +75,9 @@
         </div>
       </div>
     </div>
-
-    <div class="col-lg-7 pb-5" *ngIf="product.producType == 'efleur'">
+    <!--  end estamp infos -->
+    <!--  efleur infos -->
+    <div class="col-lg-7 pb-5" *ngIf="product?.producType == 'efleur'">
       <h3 class="font-weight-semi-bold">{{ product?.efleur?.nom }}</h3>
       <!-- <div class="d-flex mb-3">
         <div class="text-warning mr-2">
@@ -94,53 +89,41 @@
         </div>
         <small class="pt-1">(200 Reviews)</small>
       </div> -->
-      <h5 class="font-weight-semi-bold mb-4">Prix : {{ product?.price }},000 DT</h5>
-
-
+      <h5 class="font-weight-semi-bold mb-4">Prix : {{ product?.price }},000 DTN</h5>
       <div class="d-flex mb-3">
         <p class="text-dark font-weight-medium mb-0 mr-3">
           Description : {{ product?.efleur?.description }}
         </p>
-        <form>
-
-        </form>
       </div>
-
-
       <!-- <div class="d-flex mb-3">
         <p class="text-dark font-weight-medium mb-0 mr-3">
           ref : {{ product?.efleur?.nom }}
         </p>
-        <form>
-
-        </form>
       </div> -->
-
       <div class=" mb-4 pt-2">
         <div class="input-group quantity mr-3" style="width: 150px">
           <div class="input-group-btn">
-            <button class="btn btn-warning btn-minus" (click)="moin()">
+            <button class="btn btn-warning btn-minus" (click)="moinsQuantity()">
               <i class="fa fa-minus"></i>
             </button>
           </div>
-          <input type="number" class="form-control bg-secondary text-center" [(ngModel)]="n" />
+          <input type="number" class="form-control bg-secondary text-center" [(ngModel)]="quantity" />
           <div class="input-group-btn">
-            <button class="btn btn-warning btn-plus" (click)="plus()">
+            <button class="btn btn-warning btn-plus" (click)="addQuantity()">
               <i class="fa fa-plus"></i>
             </button>
           </div>
         </div>
-
-        <button class="btn btn-warning px-3 mt-5" (click)="AjoutProductToCart(product)">
+        <button class="btn btn-warning px-3 mt-5" (click)="addProductToCart(product)">
           <i class="fa fa-shopping-cart mr-1 "></i> Ajouter au panier
         </button>
       </div>
       <div class="d-flex pt-2">
         <p class="text-dark font-weight-medium mb-0 mr-2">Partager sur:</p>
         <div class="d-inline-flex">
-            <a class="text-dark px-2" target="_blank" href="https://www.facebook.com/TunisianPost" >
+          <a class="text-dark px-2" target="_blank" href="https://www.facebook.com/TunisianPost">
             <i class="fab fa-facebook-f"></i></a>
-          <a class="text-dark px-2"target="_blank"  href=""><i class="fab fa-instagram"></i>
+          <a class="text-dark px-2" target="_blank" href=""><i class="fab fa-instagram"></i>
           </a>
           <a class="text-dark px-2" href=""> <i class="fab fa-twitter"></i> </a>
         </div>
@@ -149,9 +132,7 @@
   </div>
 </div>
 
-<!-- Description -->
-
-
+<!-- Product Description Section -->
 <div class="row px-xl-5">
   <div class="col">
     <div class="nav nav-tabs justify-content-center border-secondary mb-4">
@@ -163,16 +144,12 @@
       <div class="tab-pane fade show active" id="tab-pane-1">
         <h6 class="mb-3">{{ product?.estamp?.sujet}}</h6>
         <h6 class="mb-3">{{ product?.efleur?.nom}}</h6>
-
       </div>
-
       <div class="tab-pane fade" id="tab-pane-2">
         <h4 class="mb-3">Informations complémentaires</h4>
-
         <div class="row">
           <div class="col-md-6">
             <ul class="list-group list-group-flush">
-
               <li class="list-group-item px-0">Nom</li>
               <li class="list-group-item px-0">Infos</li>
               <li class="list-group-item px-0">prix</li>
@@ -189,9 +166,8 @@
                 {{ product?.efleur?.description}}
               </li>
               <li class="list-group-item px-0">
-                {{ product?.price/1000 }} DT
+                {{ product?.price/1000 }} DTN
               </li>
-
             </ul>
           </div>
         </div>
@@ -241,7 +217,6 @@
                 <label for="message">Commentaire </label>
                 <textarea id="message" cols="30" rows="5" class="form-control"></textarea>
               </div>
-
               <div class="form-group mb-0">
                 <input type="submit" value="Donner votre avis" class="btn btn-warning px-3" />
               </div>
@@ -249,10 +224,7 @@
           </div>
         </div>
       </div>
-
-
-
     </div>
   </div>
 </div>
-<!-- Shop Detail End -->
+<!-- Shop Details End -->

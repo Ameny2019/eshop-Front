@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
-import {MessageService} from "primeng/api";
+import { MessageService } from "primeng/api";
 import { HomeService } from 'src/app/services/home.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -11,44 +11,48 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./detail.component.css'],
 })
 export class DetailComponent implements OnInit {
-  n: number = 1;
   product: any;
-  idProduct : any;
-
+  idProduct: any;
+  quantity: number = 1;
+  availableQuantity: number = 1;
   constructor(
     private router: ActivatedRoute,
     private homeService: HomeService,
-    private cartService: CartService) {}
+    private cartService: CartService) { }
 
   ngOnInit(): void {
     this.idProduct = this.router.snapshot.params['id'];
     this.homeService.getProductDetails(this.idProduct).subscribe(
       (res: any) => {
         this.product = res;
+        // Change Available Quantity
+        if(this.product.producType === 'estamp'){
+          this.availableQuantity = this.product.estamp.QunatityEstampDisponible;
+        }else{
+          this.availableQuantity = this.product.efleur.QunatityEfleurDisponible;
+        }
       });
   }
 
-  plus() {
-    if (this.n < this.product.estamp.QunatityEstampDisponible) this.n++;
-  }
-
-  moin() {
-    if (this.n > 1) {
-      this.n--;
+  addQuantity() {
+    if (this.quantity < this.availableQuantity) {
+      this.quantity++;
     }
   }
 
-  AjoutProductToCart(product: any) {
+  moinsQuantity() {
+    if (this.quantity > 1) {
+      this.quantity--;
+    }
+  }
+
+  addProductToCart(product: any) {
     let article = {
       productId: product._id,
-      quantity: this.n,
+      quantity: this.quantity,
       articleInfo: product,
     };
     console.log('article to cart is :', article);
     this.cartService.addToCartTemp(article);
-
-    // this.cartService.addProductToCart(article).subscribe((res: any) => {
-    //   //console.log("res is : ",res);
-    // });
   }
 }

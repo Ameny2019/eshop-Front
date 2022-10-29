@@ -12,9 +12,7 @@ export class CartService {
   constructor(private http: HttpClient, private messageService: MessageService) {
     if (localStorage.getItem('cart') !== null && localStorage.getItem('cart') !== undefined) {
       this.tempCartItems = JSON.parse(localStorage.getItem('cart'));
-
     }
-    // console.log(this.tempCartItems);
   }
 
   addToCartTemp(data: any) {
@@ -24,10 +22,8 @@ export class CartService {
     } else {
       product.quantity += data.quantity;
     }
-    console.log(data);
     this.messageService.add({severity: 'success', summary: 'Panier', detail: 'Produit ajouté avec succès'});
     this.persistCart();
-
   }
 
   getAllQuantity() {
@@ -37,8 +33,6 @@ export class CartService {
   }
 
   addProductToCart(product: any) {
-    console.log('here ajout article : ', product);
-
     return this.http.post(`${environment.baseURL}/Cart/addItem`, product);
   }
 
