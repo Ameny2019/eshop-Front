@@ -99,7 +99,7 @@ export class CheckoutComponent implements OnInit {
     };
     this.cartServ.saveCart(cart).subscribe((res: any) => {
       this.router.navigate(['/invoice', res._id]);
-      this.cartServ.clearCart();
+      // this.cartServ.clearCart();
     });
   }
 
