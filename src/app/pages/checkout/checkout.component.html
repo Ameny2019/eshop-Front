@@ -15,19 +15,19 @@
         <h4 class="font-weight-semi-bold mb-4">Informations personnelles </h4>
         <div class="row">
           <div class="col-md-6 form-group">
-            <label class="font-weight-bold">Nom & prénom</label>
+            <label class="font-weight-bold">Nom & prénom :</label>
             <p>{{nom}}</p>
           </div>
           <div class="col-md-6 form-group">
-            <label class="font-weight-bold">E-mail</label>
+            <label class="font-weight-bold">E-mail :</label>
             <p>{{email}}</p>
           </div>
           <div class="col-md-6 form-group">
-            <label class="font-weight-bold">Numero de téléphone</label>
+            <label class="font-weight-bold">Numero de téléphone :</label>
             <p>{{tel}}</p>
           </div>
           <div class="col-md-6 form-group">
-            <label class="font-weight-bold">Adresse</label>
+            <label class="font-weight-bold">Adresse :</label>
             <p>{{adresse}}</p>
           </div>
         </div>
@@ -53,7 +53,8 @@
               <span *ngIf="item.articleInfo.efleur">
                 {{item.articleInfo.price}}.000
               </span>
-              x {{item.quantity}}</p>
+              x {{item.quantity}}
+            </p>
           </div>
           <div class="card-footer border-secondary bg-transparent">
             <div class="d-flex justify-content-between mt-2">
@@ -71,22 +72,22 @@
           <div class="card-body">
             <div class="form-group">
               <div class="custom-control custom-radio">
-                <input type="radio" class="custom-control-input" name="payment3" id="paypal3" [(ngModel)]="modepay"
-                  value="choix13">
+                <input type="radio" class="custom-control-input" name="livraison" id="paypal3"
+                  [(ngModel)]="deliveryMethod" value="Au bureau de poste" checked>
                 <label class="custom-control-label" for="paypal3">Au bureau de poste</label>
               </div>
             </div>
             <div class="form-group">
               <div class="custom-control custom-radio">
-                <input type="radio" class="custom-control-input" name="payment2" id="paypal2" [(ngModel)]="modepay"
-                  value="choix12">
+                <input type="radio" class="custom-control-input" name="livraison" id="paypal2"
+                  [(ngModel)]="deliveryMethod" value="Par courrier express">
                 <label class="custom-control-label" for="paypal2">Par courrier express</label>
               </div>
             </div>
             <div class="form-group">
               <div class="custom-control custom-radio">
-                <input type="radio" class="custom-control-input" name="payment1" id="paypal1" [(ngModel)]="modepay"
-                  value="choix11">
+                <input type="radio" class="custom-control-input" name="livraison" id="paypal1"
+                  [(ngModel)]="deliveryMethod" value="Par par pikpak box">
                 <label class="custom-control-label" for="paypal1">Par par pikpak box</label>
               </div>
             </div>
@@ -99,32 +100,32 @@
           <div class="card-body">
             <div class="form-group">
               <div class="custom-control custom-radio">
-                <input type="radio" class="custom-control-input" name="payment" id="paypal" [(ngModel)]="modepay"
-                  value="choix1">
-                <label class="custom-control-label" for="paypal">A la livraison</label>
+                <input type="radio" class="custom-control-input" name="payment" id="paypal" [(ngModel)]="payementMethod"
+                  value="À la livraison" checked>
+                <label class="custom-control-label" for="paypal">À la livraison</label>
               </div>
             </div>
             <div class="form-group">
               <div class="custom-control custom-radio">
-                <input type="radio" class="custom-control-input" name="payment" id="directcheck" [(ngModel)]="modepay"
-                  value="choix2">
+                <input type="radio" class="custom-control-input" name="payment" id="directcheck"
+                  [(ngModel)]="payementMethod" value="Au bureau de poste">
                 <label class="custom-control-label" for="directcheck">Au bureau de poste</label>
               </div>
             </div>
             <div class="">
               <div class="custom-control custom-radio">
-                <input type="radio" class="custom-control-input" name="payment" id="banktransfer" [(ngModel)]="modepay"
-                  value="choix3">
-                <label class="custom-control-label" for="banktransfer"> Par carte bancaire/e-dinar </label>
+                <input type="radio" class="custom-control-input" name="payment" id="banktransfer"
+                  [(ngModel)]="payementMethod" value="Par carte bancaire/E-dinar">
+                <label class="custom-control-label" for="banktransfer"> Par carte bancaire/E-dinar </label>
               </div>
-
             </div>
           </div>
           <div class="card-footer border-secondary bg-transparent">
-            <button class="btn btn-block btn-warning my-3 py-3" [disabled]="modepay === undefined"
+            <button class="btn btn-block btn-warning my-3 py-3" [disabled]="payementMethod === undefined"
               (click)="makePayment(totalSum(cartServ.tempCartItems))">
-              <p *ngIf="modepay === 'choix3'; else t2">Passer au paiement</p>
-              <ng-template #t2>Valider et continuer</ng-template>
+              <i class="fa fa-credit-card" aria-hidden="true"></i>
+              <span *ngIf="payementMethod === 'Par carte bancaire/E-dinar'"> Passer au paiement</span>
+              <span *ngIf="payementMethod !== 'Par carte bancaire/E-dinar'"> Valider et continuer</span>
             </button>
             <p> Consulter les <a routerLink="/conditions-vente" style="text-decoration:underline">conditions générales
                 de vente</a> pour plus d'informations sur les modes de livraison et de paiement. </p>

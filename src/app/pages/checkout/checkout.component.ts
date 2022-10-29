@@ -12,46 +12,47 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent implements OnInit {
+  // Connected user infos
   public id: string;
   public nom: string;
   public tel: Number;
   public email: string;
   public adresse: string;
-
+  // Stripe variables
   paymentHandler: any = null;
   stripeAPIKey: any = environment.stripeAPIKey;
-  modepay: any;
-  type: string = 'password';
+  deliveryMethod: any = 'Au bureau de poste';
+  payementMethod: any = 'À la livraison';
   constructor(public cartServ: CartService,
     private authService: AuthService,
     private router: Router,
     public editprofileService: EditprofileService,
-    ) {
+  ) {
   }
   ngOnInit(): void {
     this.invokeStripe();
     this.editprofileService
-    .getProfile()
-    .subscribe((result: any) => {
-      this.id = result.data._id;
-      this.nom = result.data.nom;
-      this.tel = result.data.tel;
-      this.email = result.data.email;
-      this.adresse = result.data.adresse;
-    });
+      .getProfile()
+      .subscribe((result: any) => {
+        this.id = result.data._id;
+        this.nom = result.data.nom;
+        this.tel = result.data.tel;
+        this.email = result.data.email;
+        this.adresse = result.data.adresse;
+      });
   }
 
   totalSum(items: any): number {
     let sum: number = 0;
-    items.forEach((item:any) => {
-      const price = item?.articleInfo.producType == 'estamp' ? Number(item.articleInfo.price) : Number(item.articleInfo.price) *1000;
+    items.forEach((item: any) => {
+      const price = item?.articleInfo.producType == 'estamp' ? Number(item.articleInfo.price) : Number(item.articleInfo.price) * 1000;
       sum += item.quantity * price;
     });
     return sum;
   }
 
   makePayment(amount: any) {
-    if (this.modepay == "choix3") {
+    if (this.payementMethod == "Par carte bancaire/E-dinar") {
       const paymentHandler = (<any>window).StripeCheckout.configure({
         key: this.stripeAPIKey,
         locale: 'auto',
@@ -64,8 +65,8 @@ export class CheckoutComponent implements OnInit {
             title: 'Votre commande à été effectuer avec success',
             showConfirmButton: false,
           }).then(() => {
-              console.log("ss");
-              this.cartServ.clearCart();
+            console.log("ss");
+            this.cartServ.clearCart();
           });
         },
       });
@@ -76,7 +77,7 @@ export class CheckoutComponent implements OnInit {
         description: 'Confirmation des achats',
         amount: amount / 10,
       });
-    }else {
+    } else {
       this.saveCart();
     }
   }

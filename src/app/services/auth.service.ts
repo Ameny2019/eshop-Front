@@ -20,7 +20,9 @@ export class AuthService {
     private http: HttpClient,
     private router: Router,
     private editprofileService: EditprofileService) {
-    this.loadDataFromCurrentProfile();
+      if(this.isConnected()){
+        this.loadDataFromCurrentProfile();
+      }
   }
 
   register(user: any) {
