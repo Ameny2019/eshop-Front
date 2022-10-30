@@ -112,6 +112,12 @@
     <!-- end footer -->
   </main>
   <aside class="row">
+    <div class="col-12 my-3 text-center" *ngIf="cart?.invoiceLink">
+      <a class="btn btn-success" href="{{cart?.invoiceLink}}" download="facture">
+        <i class="fa fa-download"></i>
+        Télécharger la facture PDF
+      </a>
+    </div>
     <span class="col-12 text-center pb-5">
       La poste tunisienne vous remercie pour votre confiance
     </span>
