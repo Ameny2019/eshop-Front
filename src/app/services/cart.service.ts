@@ -50,6 +50,7 @@ export class CartService {
   clearCart() {
     this.tempCartItems = [];
     localStorage.removeItem('cart');
+    this.tempCartLenghtSubject.next(0);
   }
 
   deleteItmCart(ind: number) {
