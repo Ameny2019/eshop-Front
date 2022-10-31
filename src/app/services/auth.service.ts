@@ -78,10 +78,6 @@ export class AuthService {
     return !!localStorage.getItem('token');
   }
 
-  getCoonectedUser() {
-    return JSON.parse(localStorage.getItem('user'));
-  }
-
   logoutUser() {
     this.logout().subscribe(
       (response: any) => {
