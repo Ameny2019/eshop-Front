@@ -2,20 +2,14 @@
 <app-sidebar></app-sidebar>
 
 <div class="container-fluid mb-5" style="background-color: #1e1b58">
-  <div
-    class="d-flex flex-column align-items-center justify-content-center"
-    style="min-height: 200px"
-  >
-    <h1
-      class="font-weight-semi-bold text-uppercase mb-3"
-      style="color: #fdc600"
-    >
+  <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 200px">
+    <h1 class="font-weight-semi-bold text-uppercase mb-3" style="color: #fdc600">
       Contactez-nous
     </h1>
   </div>
 </div>
 
-<div id ="con" class="row px-xl-5">
+<div id="con" class="row px-xl-5">
   <div class="container-fluid pt-5">
 
 
@@ -32,66 +26,34 @@
       <div class="col-lg-7 mb-5" id="form1">
         <div class="contact-form">
           <div id="success"></div>
-          <form name="sentMessage" id="contactForm" novalidate="novalidate">
+          <form [formGroup]="contactForm" (ngSubmit)="contact()" name="sentMessage" id="contactForm"
+            novalidate="novalidate">
             <div class="control-group">
-              <input
-                type="text"
-                class="form-control"
-                id="name"
-                placeholder="Votre nom ici"
-                required="required"
-                data-validation-required-message="votre nom"
-              />
+              <input type="text" class="form-control" id="name" placeholder="Votre nom ici" required="required"
+                data-validation-required-message="votre nom" formControlName="name"/>
               <p class="help-block text-danger"></p>
             </div>
             <div class="control-group">
-              <input
-                type="email"
-                class="form-control"
-                id="email"
-                placeholder="Votre e-mail ici"
-                required="required"
-                data-validation-required-message="Merci de saisir votre e-mail"
-              />
+              <input type="email" class="form-control" id="email" placeholder="Votre e-mail ici" required="required"
+                data-validation-required-message="Merci de saisir votre e-mail" formControlName="email" />
               <p class="help-block text-danger"></p>
             </div>
             <div class="control-group">
-              <input
-                type="text"
-                class="form-control"
-                id="subject"
-                placeholder="Mettez l'objet de votre message ici"
-                required="required"
-                data-validation-required-message="Saisir l'objet de votre message"
-              />
+              <input type="text" class="form-control" id="subject" placeholder="Mettez l'objet de votre message ici"
+                required="required" data-validation-required-message="Saisir l'objet de votre message" formControlName="subject" />
               <p class="help-block text-danger"></p>
             </div>
             <div class="control-group">
               <!-- form control messsage -->
-              <textarea
-                class="form-control"
-                rows="6"
-                id="message"
-                placeholder="Tapez votre message !"
-                required="required"
-                data-validation-required-message="écrivez votre message ici "
-              ></textarea>
+              <textarea class="form-control" rows="6" id="message" placeholder="Tapez votre message !"
+                required="required" data-validation-required-message="écrivez votre message ici " formControlName="message"></textarea>
               <p class="help-block text-danger"></p>
             </div>
             <div>
-              <button
-                style="margin: 4px"
-                class="btn btn-warning py-2 px-4"
-                type="submit"
-                id="sendMessageButton"
-              >
-              Envoyer
+              <button [disabled]="contactForm.invalid" style="margin: 4px" class="btn btn-warning py-2 px-4" type="submit" id="sendMessageButton">
+                Envoyer
               </button>
-              <button
-                class="btn btn-warning py-2 px-4"
-                type="submit"
-                id="resetmessagebutton"
-              >
+              <button class="btn btn-warning py-2 px-4" type="reset" id="resetmessagebutton">
                 Annuler
               </button>
             </div>

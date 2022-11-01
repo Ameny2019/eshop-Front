@@ -16,4 +16,8 @@ export class HomeService {
   getProductDetails(id:any) {
     return this.http.get(`${environment.baseURL}/home/products/${id}`);
   }
+
+  contact(data:any) {
+    return this.http.post(`${environment.baseURL}/home/contact`, data);
+  }
 }
