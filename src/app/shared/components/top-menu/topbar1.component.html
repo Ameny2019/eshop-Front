@@ -1,6 +1,6 @@
 <div class="constainer-fluid bg-secondary">
   <div class="row">
-    <div class="col-sm-5 col-lg-4">
+    <div class="col-4 col-sm-5 col-lg-4">
       <a routerLink="/" class="d-flex flex-row logo-card">
         <img src="assets/img/postetn.png" class="logo" alt="">
         <div class="d-none d-lg-block pt-4">
@@ -10,7 +10,7 @@
         </div>
       </a>
     </div>
-    <div class="col-sm-7 col-lg-8 d-flex flex-row-reverse align-items-center">
+    <div class="col-8 col-sm-7 col-lg-8 d-flex flex-row-reverse align-items-center">
       <div class="d-flex">
         <div class="navbar-nav" *ngIf="!(authService.isLoggedIn() | async); else connected">
           <a routerLink="/auth/inscription" class="nav-item nav-link login-link">S'inscrire</a>
