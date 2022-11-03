@@ -2,11 +2,14 @@
   "name": "e-commerce-postal",
   "version": "0.0.0",
   "scripts": {
+    "start": "node index.js",
+    "start:dev": "ng serve",
     "ng": "ng",
-    "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "postinstall": "ngcc",
+    "heroku-postbuild": "npm run build"
   },
   "private": true,
   "dependencies": {
@@ -22,6 +25,7 @@
     "@rxweb/reactive-form-validators": "^2.1.7",
     "@types/stripe-v3": "^3.1.27",
     "click-edit": "^1.0.1",
+    "express": "^4.18.2",
     "google-libphonenumber": "^3.2.31",
     "jwt-decode": "^3.1.2",
     "ng-phone-number": "^1.0.15",
